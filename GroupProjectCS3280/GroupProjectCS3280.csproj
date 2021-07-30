@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="clsDataAccess.cs" />
+    <Compile Include="clsInvoice.cs" />
     <Compile Include="Items\clsItemsLogic.cs" />
     <Compile Include="Items\clsItemsSQL.cs" />
     <Compile Include="Items\wndItems.xaml.cs">

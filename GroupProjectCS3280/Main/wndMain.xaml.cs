@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GroupProjectCS3280.Search;
+using GroupProjectCS3280.Items;
 
 namespace GroupProjectCS3280.Main
 {
@@ -22,6 +24,14 @@ namespace GroupProjectCS3280.Main
         public wndMain()
         {
             InitializeComponent();
+
+            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+        }
+
+        private void Temp_Search_Click(object sender, RoutedEventArgs e)
+        {
+            wndSearch test = new wndSearch();
+            test.ShowDialog();
         }
     }
 }

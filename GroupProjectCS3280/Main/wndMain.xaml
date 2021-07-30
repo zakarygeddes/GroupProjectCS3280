@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="wndMain" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="Temp_Search" Content="Temp Search Button" HorizontalAlignment="Left" Margin="167,237,0,0" VerticalAlignment="Top" Width="163" Height="21" Click="Temp_Search_Click"/>
+
     </Grid>
 </Window>
