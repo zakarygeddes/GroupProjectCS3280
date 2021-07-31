@@ -33,58 +33,65 @@ namespace GroupProjectCS3280.Search
         /// </summary>
         public wndSearch()
         {
-            InitializeComponent();
-
-            SearchLogic = new clsSearchLogic();
-            //SearchSQL = new clsSearchSQL();
-            //Testing adding stuff to the data grid, normally SearchLogic.RunQuery("","",""); would be here instead
-
-            DataGridTextColumn col1 = new DataGridTextColumn();
-            DataGridTextColumn col2 = new DataGridTextColumn();
-            DataGridTextColumn col3 = new DataGridTextColumn();
-
-            SearchDataGrid.Columns.Add(col1);
-            SearchDataGrid.Columns.Add(col2);
-            SearchDataGrid.Columns.Add(col3);
-
-            col1.Binding = new Binding("num");
-            col2.Binding = new Binding("date");
-            col3.Binding = new Binding("cost");
-
-            col1.Header = "Invoice Number";
-            col2.Header = "Invoice Date";
-            col3.Header = "Total Cost";
-
-            List<clsInvoice> Rows = new List<clsInvoice>();
-            string nullstring = null;
-            Rows = SearchLogic.RunQuery(nullstring, nullstring, nullstring); //Query will Select all Invoices
-
-            foreach (clsInvoice Row in Rows)
+            try
             {
-                SearchDataGrid.Items.Add(Row);
+                InitializeComponent();
+
+                SearchLogic = new clsSearchLogic();
+                //SearchSQL = new clsSearchSQL();
+                //Testing adding stuff to the data grid, normally SearchLogic.RunQuery("","",""); would be here instead
+
+                DataGridTextColumn col1 = new DataGridTextColumn();
+                DataGridTextColumn col2 = new DataGridTextColumn();
+                DataGridTextColumn col3 = new DataGridTextColumn();
+
+                SearchDataGrid.Columns.Add(col1);
+                SearchDataGrid.Columns.Add(col2);
+                SearchDataGrid.Columns.Add(col3);
+
+                col1.Binding = new Binding("num");
+                col2.Binding = new Binding("date");
+                col3.Binding = new Binding("cost");
+
+                col1.Header = "Invoice Number";
+                col2.Header = "Invoice Date";
+                col3.Header = "Total Cost";
+
+                List<clsInvoice> Rows = new List<clsInvoice>();
+                string nullstring = null;
+                Rows = SearchLogic.RunQuery(nullstring, nullstring, nullstring); //Query will Select all Invoices
+
+                foreach (clsInvoice Row in Rows)
+                {
+                    SearchDataGrid.Items.Add(Row);
+                }
+
+                //Add appropiate values to ComboBoxes
+
+                List<string> InvoiceNums = SearchLogic.FillInvoiceNumBox();
+
+                foreach (string InvoiceNum in InvoiceNums)
+                {
+                    InvoiceNumberBox.Items.Add(InvoiceNum);
+                }
+
+                List<string> InvoiceDates = SearchLogic.FillInvoiceDateBox();
+
+                foreach (string InvoiceDate in InvoiceDates)
+                {
+                    InvoiceDateBox.Items.Add(InvoiceDate);
+                }
+
+                List<string> TotalCharges = SearchLogic.FillTotalChargeBox();
+
+                foreach (string TotalCharge in TotalCharges)
+                {
+                    TotalChargeBox.Items.Add(TotalCharge);
+                }
             }
-
-            //Add appropiate values to ComboBoxes
-
-            List<string> InvoiceNums = SearchLogic.FillInvoiceNumBox();
-            
-            foreach (string InvoiceNum in InvoiceNums)
+            catch (Exception ex)
             {
-                InvoiceNumberBox.Items.Add(InvoiceNum);
-            }
-
-            List<string> InvoiceDates = SearchLogic.FillInvoiceDateBox();
-
-            foreach (string InvoiceDate in InvoiceDates)
-            {
-                InvoiceDateBox.Items.Add(InvoiceDate);
-            }
-
-            List<string> TotalCharges = SearchLogic.FillTotalChargeBox();
-
-            foreach (string TotalCharge in TotalCharges)
-            {
-                TotalChargeBox.Items.Add(TotalCharge);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -95,11 +102,18 @@ namespace GroupProjectCS3280.Search
         /// <param name="e"></param>
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
-            clsInvoice selectedInvoice = (clsInvoice)SearchDataGrid.SelectedItem;
+            try
+            {
+                clsInvoice selectedInvoice = (clsInvoice)SearchDataGrid.SelectedItem;
 
-            //Here I would pass selectedInvoice to wndMain. Not entirely sure how to do this.
-
-            this.Hide();
+                //Here I would pass selectedInvoice to wndMain. Not entirely sure how to do this.
+                // ask for public variables in main class, then set that public variable (i.e. main.selectedInvoice = selectedInvoice) -dragon
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -109,7 +123,14 @@ namespace GroupProjectCS3280.Search
         /// <param name="e"></param>
         private void InvoiceNumberBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateDataGrid();
+            try
+            {
+                UpdateDataGrid();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -119,7 +140,14 @@ namespace GroupProjectCS3280.Search
         /// <param name="e"></param>
         private void InvoiceDateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateDataGrid();
+            try
+            {
+                UpdateDataGrid();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -129,7 +157,14 @@ namespace GroupProjectCS3280.Search
         /// <param name="e"></param>
         private void TotalChargeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateDataGrid();
+            try
+            {
+                UpdateDataGrid();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -137,18 +172,25 @@ namespace GroupProjectCS3280.Search
         /// </summary>
         private void UpdateDataGrid()
         {
-            string num = (string)InvoiceNumberBox.SelectedItem;
-            string date = (string)InvoiceDateBox.SelectedItem;
-            string total = (string)TotalChargeBox.SelectedItem;
-
-            //send these parameters to function RunQuery in clsSearchLogic. RunQuery returns list of invoices to be added to the SearchDataGrid
-            List<clsInvoice> Rows;
-            Rows = SearchLogic.RunQuery(num, date, total);
-
-            SearchDataGrid.Items.Clear();
-            foreach (clsInvoice Row in Rows)
+            try
             {
-                SearchDataGrid.Items.Add(Row);
+                string num = (string)InvoiceNumberBox.SelectedItem;
+                string date = (string)InvoiceDateBox.SelectedItem;
+                string total = (string)TotalChargeBox.SelectedItem;
+
+                //send these parameters to function RunQuery in clsSearchLogic. RunQuery returns list of invoices to be added to the SearchDataGrid
+                List<clsInvoice> Rows;
+                Rows = SearchLogic.RunQuery(num, date, total);
+
+                SearchDataGrid.Items.Clear();
+                foreach (clsInvoice Row in Rows)
+                {
+                    SearchDataGrid.Items.Add(Row);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -159,7 +201,14 @@ namespace GroupProjectCS3280.Search
         /// <param name="e"></param>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            try
+            {
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

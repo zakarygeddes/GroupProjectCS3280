@@ -29,9 +29,16 @@ namespace GroupProjectCS3280.Main
         /// </summary>
         public wndMain()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+                Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -41,9 +48,16 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void Temp_Search_Click(object sender, RoutedEventArgs e)
         {
-            wndSearch test = new wndSearch();
-            //test.Activate(); is a better way to do this than showdialog, I think, but up to you -Dragon
-            test.ShowDialog();
+            try
+            {
+                wndSearch test = new wndSearch();
+                //test.Activate(); is a better way to do this than showdialog, I think, but up to you -Dragon
+                test.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

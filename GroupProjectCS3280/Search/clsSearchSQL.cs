@@ -26,7 +26,14 @@ namespace GroupProjectCS3280.Search
         /// <returns></returns>
         public string SelectInvoiceNum(string num)
         {
-            return "SELECT * FROM Invoices WHERE InvoiceNum = " + num;
+            try
+            {
+                return "SELECT * FROM Invoices WHERE InvoiceNum = " + num;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -37,7 +44,14 @@ namespace GroupProjectCS3280.Search
         /// <returns></returns>
         public string SelectInvoiceNumAndDate(string num, string date)
         {
-            return "SELECT * FROM Invoices WHERE InvoiceNum = " + num + " AND InvoiceDate = #" + date + "#";
+            try
+            {
+                return "SELECT * FROM Invoices WHERE InvoiceNum = " + num + " AND InvoiceDate = #" + date + "#";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -49,7 +63,14 @@ namespace GroupProjectCS3280.Search
         /// <returns></returns>
         public string SelectInvoiceNumAndDateAndTotal(string num, string date, string total)
         {
-            return "SELECT * FROM Invoices WHERE InvoiceNum = " + num + " AND InvoiceDate = #" + date + "# AND TotalCost = " + total;
+            try
+            {
+                return "SELECT * FROM Invoices WHERE InvoiceNum = " + num + " AND InvoiceDate = #" + date + "# AND TotalCost = " + total;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -59,7 +80,14 @@ namespace GroupProjectCS3280.Search
         /// <returns></returns>
         public string SelectTotal(string total)
         {
-            return "SELECT * FROM Invoices WHERE TotalCost = " + total;
+            try
+            {
+                return "SELECT * FROM Invoices WHERE TotalCost = " + total;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>

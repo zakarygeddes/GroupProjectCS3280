@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 
 /// <summary>
 /// Namespace for the class
@@ -25,13 +26,20 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable GetAllItems()
         {
-            string getItemsSQL = $"SELECT * FROM ItemDesc";
-            int row = 0;
-            DataSet getAll = new DataSet();
-            getAll = cda.ExecuteSQLStatement(getItemsSQL, ref row);
-            DataTable getItems = getAll.Tables[getItemsSQL];
+            try
+            {
+                string getItemsSQL = $"SELECT * FROM ItemDesc";
+                int row = 0;
+                DataSet getAll = new DataSet();
+                getAll = cda.ExecuteSQLStatement(getItemsSQL, ref row);
+                DataTable getItems = getAll.Tables[getItemsSQL];
 
-            return getItems;
+                return getItems;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -40,14 +48,21 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable GetItemCodes()
         {
-            string getItemCodesSQL = $"SELECT DISTINCT(ItemCode) FROM ItemDesc";
-            int row = 0;
-            DataSet ds = new DataSet();
-            ds = cda.ExecuteSQLStatement(getItemCodesSQL, ref row);
+            try
+            {
+                string getItemCodesSQL = $"SELECT DISTINCT(ItemCode) FROM ItemDesc";
+                int row = 0;
+                DataSet ds = new DataSet();
+                ds = cda.ExecuteSQLStatement(getItemCodesSQL, ref row);
 
-            DataTable dt = ds.Tables["Table"]; //converts a dataset to a table
+                DataTable dt = ds.Tables["Table"]; //converts a dataset to a table
 
-            return dt;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -59,13 +74,20 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable InsertItem(string code, string desc, int cost)
         {
-            string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (`{code}`, `{desc}`, `{cost}`)";
-            int row = 0;
-            DataSet query = new DataSet();
-            query = cda.ExecuteSQLStatement(insertSQL, ref row);
-            DataTable insertQuery = query.Tables[insertSQL];
+            try
+            {
+                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (`{code}`, `{desc}`, `{cost}`)";
+                int row = 0;
+                DataSet query = new DataSet();
+                query = cda.ExecuteSQLStatement(insertSQL, ref row);
+                DataTable insertQuery = query.Tables[insertSQL];
 
-            return insertQuery;
+                return insertQuery;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -75,13 +97,20 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable GetInvoiceNum(string code)
         {
-            string getNumSQL = $"SELECT DISTINCT(InvoiceNum) FROM LineItems WHERE ItemCode = `{code}`";
-            int row = 0;
-            DataSet getQuery = new DataSet();
-            getQuery = cda.ExecuteSQLStatement(getNumSQL, ref row);
-            DataTable dt = getQuery.Tables[getNumSQL];
+            try
+            {
+                string getNumSQL = $"SELECT DISTINCT(InvoiceNum) FROM LineItems WHERE ItemCode = `{code}`";
+                int row = 0;
+                DataSet getQuery = new DataSet();
+                getQuery = cda.ExecuteSQLStatement(getNumSQL, ref row);
+                DataTable dt = getQuery.Tables[getNumSQL];
 
-            return dt;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -93,13 +122,20 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable UpdateAllItems(string code, string desc, int cost)
         {
-            string updateSQL = $"UPDATE ItemDesc SET ItemCode = `{code}`, ItemDesc = `{desc}`, Cost = {cost} WHERE ItemCode = `{code}`";
-            int row = 0;
-            DataSet update = new DataSet();
-            update = cda.ExecuteSQLStatement(updateSQL, ref row);
-            DataTable dt = update.Tables[updateSQL];
+            try
+            {
+                string updateSQL = $"UPDATE ItemDesc SET ItemCode = `{code}`, ItemDesc = `{desc}`, Cost = {cost} WHERE ItemCode = `{code}`";
+                int row = 0;
+                DataSet update = new DataSet();
+                update = cda.ExecuteSQLStatement(updateSQL, ref row);
+                DataTable dt = update.Tables[updateSQL];
 
-            return dt;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -110,13 +146,20 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable UpdateDesc(string code, string desc)
         {
-            string updateDescSQL = $"UPDATE ItemDesc SET ItemDesc = `{desc}` WHERE ItemCode = `{code}`";
-            int row = 0;
-            DataSet update = new DataSet();
-            update = cda.ExecuteSQLStatement(updateDescSQL, ref row);
-            DataTable dt = update.Tables[updateDescSQL];
+            try
+            {
+                string updateDescSQL = $"UPDATE ItemDesc SET ItemDesc = `{desc}` WHERE ItemCode = `{code}`";
+                int row = 0;
+                DataSet update = new DataSet();
+                update = cda.ExecuteSQLStatement(updateDescSQL, ref row);
+                DataTable dt = update.Tables[updateDescSQL];
 
-            return dt;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -127,13 +170,20 @@ namespace GroupProjectCS3280.Items
         /// <returns></returns>
         public DataTable UpdateCost(string code, int cost)
         {
-            string updateCostSQL = $"UPDATE ItemDesc SET Cost = {cost} WHERE ItemCode = `{code}`";
-            int row = 0;
-            DataSet update = new DataSet();
-            update = cda.ExecuteSQLStatement(updateCostSQL, ref row);
-            DataTable dt = update.Tables[updateCostSQL];
+            try
+            {
+                string updateCostSQL = $"UPDATE ItemDesc SET Cost = {cost} WHERE ItemCode = `{code}`";
+                int row = 0;
+                DataSet update = new DataSet();
+                update = cda.ExecuteSQLStatement(updateCostSQL, ref row);
+                DataTable dt = update.Tables[updateCostSQL];
 
-            return dt;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
