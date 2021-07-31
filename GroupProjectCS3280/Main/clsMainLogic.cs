@@ -14,5 +14,6 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     class clsMainLogic
     {
+
     }
 }

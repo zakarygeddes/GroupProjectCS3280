@@ -14,6 +14,12 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     class clsMainSQL
     {
+        /// <summary>
+        /// used for UPDATE statement to edit invoices based on passed in invoice num
+        /// </summary>
+        /// <param name="cost"></param>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
         public string updateInvoices(int cost, int invoiceNum)
         {
             try
@@ -25,7 +31,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// used with DELETE statement to delete a record, based on passed in invoice num
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
         public string deleteInvoices(int invoiceNum)
         {
             try
@@ -37,7 +47,12 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// used to delete a line item out of LineItems table, this I would normally handle with a trigger
+        /// in the SQL side, but for simplicity when an Invoice is deleted, this statement would run as well
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
         public string deleteLineItems(int invoiceNum)
         {
             try
@@ -49,7 +64,14 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// This is to add a new LineItem, when an Invoice is added, this will also run to update that table
+        /// appropiately
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <param name="lineItemNum"></param>
+        /// <param name="itemCode"></param>
+        /// <returns></returns>
         public string addNewLineItem(int invoiceNum, int lineItemNum, char itemCode)
         {
             try
@@ -61,7 +83,13 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// This is the INSERT statement method to put a brand new invoice in the system,
+        /// again works with the add line item function
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="cost"></param>
+        /// <returns></returns>
         public string addNewInvoice(DateTime date, int cost)
         {
             try
@@ -73,7 +101,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Used once a new invoice is added, updates data grid with that invoice
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
         public string selectInvoice(int invoiceNum)
         {
             try
@@ -85,7 +117,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// select a single lineitem from an invoice for manipulation
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <returns></returns>
         public string selectItem(int invoiceNum)
         {
             try

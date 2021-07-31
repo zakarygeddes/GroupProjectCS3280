@@ -46,7 +46,8 @@ namespace GroupProjectCS3280.Main
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void ctrlEditItem_Click(object sender, RoutedEventArgs e)
-        {
+        { 
+            //this class goes to the edit items page, this shouldn't need to interact with the other code
             try
             {
                 wndItems test = new wndItems();
@@ -65,6 +66,7 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         public void ctrlSearch_Click(object sender, RoutedEventArgs e)
         {
+            //this class is designed to move to the search page, no need for interacting with other pages code
             try
             {
                 wndSearch test = new wndSearch();
@@ -83,6 +85,9 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void cmbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //this class will be what handles filling the combo box, this will need to pull from the database,
+            //but also be aware of when updates have happened in the Items page code. I am thinking it will check
+            //a variable passed by items page out, like a bool for isUpdated
             try
             {
              
@@ -99,6 +104,10 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnNewInvoice_Click(object sender, RoutedEventArgs e)
         {
+            //this will set a flag in the logic to say that I am making a new invoice, so that when the save button 
+            //at the bottom is clicked, it will know to run an INSERT and not an UPDATE
+            //it will also know to not fill the datagrid
+            //this button click will also have to clear out whatever is being edited
             try
             {
 
@@ -115,9 +124,13 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnEditInvoice_Click(object sender, RoutedEventArgs e)
         {
+            //this will need to grab the currently selected invoice from the search page
+            //i am thinking this will be a global variable so that all pages can access what 
+            //the search page has selected
             try
             {
-
+                //this will populate the datagrid with the invoice passed from the search page
+                //this will have to be in some sort of global class/variable/ potentiall an object manager type
             }
             catch (Exception ex)
             {
@@ -131,6 +144,9 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnDeleteInvoice_Click(object sender, RoutedEventArgs e)
         {
+            //it will interact with both logic and sql classes 
+            //this will run both a search and delete function. I am thinking it pulls up the selected invoice number
+            //then presents the delete as a second chance
             try
             {
 
@@ -147,6 +163,8 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
+            //this will store the invoice info in variables and get them ready to be used by the sql class in 
+            //creating full sql statement strings
             try
             {
 
