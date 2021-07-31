@@ -19,6 +19,19 @@ using GroupProjectCS3280.Items;
 /// </summary>
 namespace GroupProjectCS3280.Main
 {
+    //This is the main page, it handles getting to the search or edit items pages from
+    //a control box called "Options" at the top left.
+    //this page also can make a new invoice, or through a seperate invoice class used
+    //as an object manager grab data from the search page and use it to populate the 
+    //data grid box. This page has buttons that will connect with the logic and SQL classes for
+    //the main page and handle the logic. Primarily by passing button click choices to 
+    //the logic to set flags and be clear on what they are doing, and that class will go 
+    //to the SQL class to generate strings of SQL to execute the statements in the logic
+    //this page also interacts with the items pages, in that it will need to
+    //populate its combo box with new items if that has been updated.
+    //I am not sure if passing some sort of boolean flag out of that page to mark whether
+    //it has been updated so that then the combobox knows to refresh
+
     /// <summary>
     /// Interaction logic for wndMain.xaml
     /// </summary>
