@@ -86,6 +86,18 @@ namespace GroupProjectCS3280.Main
             }
         }
 
+        public string selectItem(int invoiceNum)
+        {
+            try
+            {
+                return "SELECT LineItems.ItemCode, ItemDesc.ItemDesc, ItemDesc.Cost FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceNum = " + invoiceNum;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
     }
 
