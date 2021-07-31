@@ -26,6 +26,7 @@
         <Button x:Name="btnEnter" Content="Enter" HorizontalAlignment="Left" Margin="688,99,0,0" VerticalAlignment="Top" Width="79" Height="23" Click="btnEnter_Click"/>
         <Button x:Name="btnEditInvoice" Content="Edit Invoice" HorizontalAlignment="Left" Margin="307,51,0,0" VerticalAlignment="Top" Width="123" Click="btnEditInvoice_Click"/>
         <Button x:Name="btnDeleteInvoice" Content="Delete Invoice" HorizontalAlignment="Left" Margin="487,51,0,0" VerticalAlignment="Top" Width="142" Click="btnDeleteInvoice_Click"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="363,392,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

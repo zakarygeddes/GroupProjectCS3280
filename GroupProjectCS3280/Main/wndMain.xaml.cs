@@ -40,19 +40,116 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
         /// <summary>
-        /// Calls the test dialog
+        /// menu control for opening 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Temp_Search_Click(object sender, RoutedEventArgs e)
+        public void ctrlEditItem_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                wndItems test = new wndItems();
+                //test.Activate(); is a better way to do this than showdialog, I think, but up to you -Dragon
+                test.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// menu control item for opening search page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void ctrlSearch_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 wndSearch test = new wndSearch();
                 //test.Activate(); is a better way to do this than showdialog, I think, but up to you -Dragon
                 test.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Combo box drop down click method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+             
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// Button to handle new invoice generation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNewInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// button to handle editting invoices
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// button to handle deleting invoices
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteInvoice_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// button to submit new line to invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEnter_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {
