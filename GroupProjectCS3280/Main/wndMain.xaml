@@ -7,7 +7,25 @@
         mc:Ignorable="d"
         Title="wndMain" Height="450" Width="800">
     <Grid>
-        <Button x:Name="Temp_Search" Content="Temp Search Button" HorizontalAlignment="Left" Margin="167,237,0,0" VerticalAlignment="Top" Width="163" Height="21" Click="Temp_Search_Click"/>
+        <Menu HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="67">
+            <MenuItem Header="Options">
+                <MenuItem x:Name="ctrlEditItem" Header="Edit Items" IsCheckable="true"/>
+                <MenuItem x:Name="ctrlSearch" Header="Search Invoices" IsCheckable="true"/>
+            </MenuItem>
+        </Menu>
+        <DataGrid x:Name="dgInvoice" HorizontalAlignment="Left" Height="234" Margin="178,142,0,0" VerticalAlignment="Top" Width="432"/>
+        <Label x:Name="lblInvoiceNum" Content="Invoice Num:" HorizontalAlignment="Left" Margin="7,95,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtInvoiceNum" HorizontalAlignment="Left" Height="23" Margin="89,99,0,0" TextWrapping="Wrap" Text="TBD" VerticalAlignment="Top" Width="61"/>
+        <Label x:Name="lblDate" Content="Date:" HorizontalAlignment="Left" Margin="159,96,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtDate" HorizontalAlignment="Left" Height="23" Margin="201,99,0,0" TextWrapping="Wrap" Text="Enter Date" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblItem" Content="Item:" HorizontalAlignment="Left" Margin="326,96,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbItems" HorizontalAlignment="Left" Margin="377,99,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cmbItems_SelectionChanged"/>
+        <Label x:Name="lblCost" Content="Cost:" HorizontalAlignment="Left" Margin="502,97,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCost" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="543,99,0,0" TextWrapping="Wrap" Text="$" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnNewInvoice" Content="New Invoice" HorizontalAlignment="Left" Margin="131,51,0,0" VerticalAlignment="Top" Width="137" Click="btnNewInvoice_Click"/>
+        <Button x:Name="btnEnter" Content="Enter" HorizontalAlignment="Left" Margin="688,99,0,0" VerticalAlignment="Top" Width="79" Height="23" Click="btnEnter_Click"/>
+        <Button x:Name="btnEditInvoice" Content="Edit Invoice" HorizontalAlignment="Left" Margin="307,51,0,0" VerticalAlignment="Top" Width="123" Click="btnEditInvoice_Click"/>
+        <Button x:Name="btnDeleteInvoice" Content="Delete Invoice" HorizontalAlignment="Left" Margin="487,51,0,0" VerticalAlignment="Top" Width="142" Click="btnDeleteInvoice_Click"/>
 
     </Grid>
 </Window>
