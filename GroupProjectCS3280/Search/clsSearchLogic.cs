@@ -5,12 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
+/// <summary>
+/// Entry point for the Search namespace
+/// </summary>
 namespace GroupProjectCS3280.Search
 {
+    /// <summary>
+    /// Entry point for the cls search logic class, where the logic is processed
+    /// </summary>
     class clsSearchLogic
     {
+        /// <summary>
+        /// data access class runs database queries
+        /// searchsql holds all the sql statements to be run
+        /// </summary>
         clsDataAccess db = new clsDataAccess();
         clsSearchSQL SearchSQL = new clsSearchSQL();
+
+        /// <summary>
+        /// Runs queries and executes sql statements
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="date"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
         public List<clsInvoice> RunQuery(string num, string date, string total)
         {
             if (num == null && date == null && total == null)
@@ -117,6 +135,10 @@ namespace GroupProjectCS3280.Search
             return defaultret;
         }
 
+        /// <summary>
+        /// fills the invoice number box
+        /// </summary>
+        /// <returns></returns>
         public List<string> FillInvoiceNumBox()
         {
             DataSet dsRows;
@@ -134,6 +156,10 @@ namespace GroupProjectCS3280.Search
             return lstInvoiceNums;
         }
 
+        /// <summary>
+        /// Fills the invoice data box
+        /// </summary>
+        /// <returns></returns>
         public List<string> FillInvoiceDateBox()
         {
             DataSet dsRows;
@@ -151,6 +177,10 @@ namespace GroupProjectCS3280.Search
             return lstInvoiceDates;
         }
 
+        /// <summary>
+        /// Fills the total charge data box
+        /// </summary>
+        /// <returns></returns>
         public List<string> FillTotalChargeBox()
         {
             DataSet dsRows;

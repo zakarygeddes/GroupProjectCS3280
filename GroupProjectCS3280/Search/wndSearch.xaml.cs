@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+/// <summary>
+/// Entry point for the Search namespace
+/// </summary>
 namespace GroupProjectCS3280.Search
 {
     /// <summary>
@@ -19,8 +22,15 @@ namespace GroupProjectCS3280.Search
     /// </summary>
     public partial class wndSearch : Window
     {
+        /// <summary>
+        /// calls Search Logic class
+        /// </summary>
         clsSearchLogic SearchLogic;
         //clsSearchSQL SearchSQL;
+
+        /// <summary>
+        /// Initializer of the window; Called when window first appears
+        /// </summary>
         public wndSearch()
         {
             InitializeComponent();
@@ -78,6 +88,11 @@ namespace GroupProjectCS3280.Search
             }
         }
 
+        /// <summary>
+        /// At the end, hides the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
             clsInvoice selectedInvoice = (clsInvoice)SearchDataGrid.SelectedItem;
@@ -87,21 +102,39 @@ namespace GroupProjectCS3280.Search
             this.Hide();
         }
 
+        /// <summary>
+        /// Calls the update data grid function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InvoiceNumberBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateDataGrid();
         }
 
+        /// <summary>
+        /// Calls the update data grid function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InvoiceDateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateDataGrid();
         }
 
+        /// <summary>
+        /// Calls the update data grid function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TotalChargeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateDataGrid();
         }
 
+        /// <summary>
+        /// Updates the grid for current data
+        /// </summary>
         private void UpdateDataGrid()
         {
             string num = (string)InvoiceNumberBox.SelectedItem;
@@ -119,6 +152,11 @@ namespace GroupProjectCS3280.Search
             }
         }
 
+        /// <summary>
+        /// Hides the current window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();

@@ -9,6 +9,9 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 
+/// <summary>
+/// Namespace for the project
+/// </summary>
 namespace GroupProjectCS3280
 {
     class clsDataAccess
