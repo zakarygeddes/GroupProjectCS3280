@@ -18,7 +18,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                return "UPDATE Invoices SET TotalCost = "+cost+" WHERE InvoiceNum = "+invoiceNum;
+                return "UPDATE Invoices SET TotalCost = " + cost + " WHERE InvoiceNum = " + invoiceNum;
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                return "INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values("+invoiceNum+", "+lineItemNum+", '"+itemCode+"')";
+                return "INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values(" + invoiceNum + ", " + lineItemNum + ", '" + itemCode + "')";
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                return "INSERT INTO Invoices(InvoiceDate, TotalCost) Values('#"+date+"#', "+cost+"')";
+                return "INSERT INTO Invoices(InvoiceDate, TotalCost) Values('#" + date + "#', " + cost + "')";
             }
             catch (Exception ex)
             {
@@ -100,15 +100,4 @@ namespace GroupProjectCS3280.Main
 
 
     }
-
-        /*
-        - UPDATE Invoices SET TotalCost = 1200 WHERE InvoiceNum = 123
-        - DELETE From LineItems WHERE InvoiceNum = 1234
-        - DELETE From Invoices WHERE InvoiceNum = 1234
-        - INSERT INTO LineItems(InvoiceNum, LineItemNum, ItemCode) Values(123, 1, 'AA')
-        - INSERT INTO Invoices(InvoiceDate, TotalCost) Values('#4/13/2018#', 100)
-        - SELECT InvoiceNum, InvoiceDate, TotalCost FROM Invoices WHERE InvoiceNum = 123
-        - select ItemCode, ItemDesc, Cost from ItemDesc
-        - SELECT LineItems.ItemCode, ItemDesc.ItemDesc, ItemDesc.Cost FROM LineItems, ItemDesc Where LineItems.ItemCode = ItemDesc.ItemCode And LineItems.InvoiceNum = 5000
-        */
 }
