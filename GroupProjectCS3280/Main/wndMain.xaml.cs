@@ -37,6 +37,8 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     public partial class wndMain : Window
     {
+        wndSearch Search;
+        wndItems Items;
         /// <summary>
         /// Called when the Window initializes
         /// </summary>
@@ -45,6 +47,7 @@ namespace GroupProjectCS3280.Main
             try
             {
                 InitializeComponent();
+                
 
                 Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             }
@@ -53,44 +56,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-        /// <summary>
-        /// menu control for opening 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void ctrlEditItem_Click(object sender, RoutedEventArgs e)
-        { 
-            //this class goes to the edit items page, this shouldn't need to interact with the other code
-            try
-            {
-                wndItems test = new wndItems();
-                //test.Activate(); is a better way to do this than showdialog, I think, but up to you -Dragon
-                test.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        /// <summary>
-        /// menu control item for opening search page
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void ctrlSearch_Click(object sender, RoutedEventArgs e)
-        {
-            //this class is designed to move to the search page, no need for interacting with other pages code
-            try
-            {
-                wndSearch test = new wndSearch();
-                //test.Activate(); is a better way to do this than showdialog, I think, but up to you -Dragon
-                test.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+   
         /// <summary>
         /// Combo box drop down click method
         /// </summary>
@@ -185,6 +151,26 @@ namespace GroupProjectCS3280.Main
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+        /// <summary>
+        /// handles control menu clicks
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if(ctrlEditItem.IsChecked==true)
+            {
+                this.Hide();
+                wndItems Items = new wndItems();
+                Items.ShowDialog();
+            }
+            if (ctrlSearch.IsChecked == true)
+            {
+                this.Hide();
+                wndSearch Search = new wndSearch();
+                Search.ShowDialog();
             }
         }
     }

@@ -8,7 +8,7 @@
         Title="wndMain" Height="450" Width="800">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="67">
-            <MenuItem Header="Options">
+            <MenuItem Header="Options" Click="MenuItem_Click">
                 <MenuItem x:Name="ctrlEditItem" Header="Edit Items" IsCheckable="true"/>
                 <MenuItem x:Name="ctrlSearch" Header="Search Invoices" IsCheckable="true"/>
             </MenuItem>
