@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GroupProjectCS3280.Search"
         mc:Ignorable="d"
-        Title="wndSearch" Height="500" Width="500" ResizeMode="NoResize">
+        Title="wndSearch" Height="500" Width="500" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <DataGrid x:Name="SearchDataGrid" HorizontalAlignment="Left" Height="333" Margin="10,66,0,0" VerticalAlignment="Top" Width="474" IsReadOnly="True"/>
         <Button x:Name="SelectButton" Content="SELECT" HorizontalAlignment="Left" Margin="95,409,0,0" VerticalAlignment="Top" Width="93" Height="39" RenderTransformOrigin="0.538,0.395" Click="SelectButton_Click"/>

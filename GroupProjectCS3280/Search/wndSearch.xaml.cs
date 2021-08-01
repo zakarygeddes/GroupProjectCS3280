@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GroupProjectCS3280.Main;
 
 /// <summary>
 /// Entry point for the Search namespace
@@ -22,6 +23,11 @@ namespace GroupProjectCS3280.Search
     /// </summary>
     public partial class wndSearch : Window
     {
+        /// <summary>
+        /// Main window
+        /// </summary>
+        wndMain mainWindow;
+
         /// <summary>
         /// calls Search Logic class
         /// </summary>
@@ -37,9 +43,9 @@ namespace GroupProjectCS3280.Search
             {
                 InitializeComponent();
 
+                mainWindow = new wndMain();
+
                 SearchLogic = new clsSearchLogic();
-                //SearchSQL = new clsSearchSQL();
-                //Testing adding stuff to the data grid, normally SearchLogic.RunQuery("","",""); would be here instead
 
                 DataGridTextColumn col1 = new DataGridTextColumn();
                 DataGridTextColumn col2 = new DataGridTextColumn();
@@ -106,9 +112,12 @@ namespace GroupProjectCS3280.Search
             {
                 clsInvoice selectedInvoice = (clsInvoice)SearchDataGrid.SelectedItem;
 
-                //Here I would pass selectedInvoice to wndMain. Not entirely sure how to do this.
-                // ask for public variables in main class, then set that public variable (i.e. main.selectedInvoice = selectedInvoice) -dragon
+                // Pass selectedInvoice to mainWindow
+                // Ask for public variables in main class, then set that public variable (i.e. main.selectedInvoice = selectedInvoice)
+
                 this.Hide();
+                mainWindow.Activate();
+                mainWindow.Show();
             }
             catch (Exception ex)
             {
@@ -203,7 +212,29 @@ namespace GroupProjectCS3280.Search
         {
             try
             {
+                this.Close();
+                mainWindow.Activate();
+                mainWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Keeps window from being disposed; really just hides the window instead of closing it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            try
+            {
                 this.Hide();
+                mainWindow.Activate();
+                mainWindow.Show();
+                e.Cancel = true;
             }
             catch (Exception ex)
             {

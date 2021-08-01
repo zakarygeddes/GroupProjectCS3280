@@ -171,7 +171,7 @@ namespace GroupProjectCS3280.Search
         }
 
         /// <summary>
-        /// Fills the invoice data box
+        /// Fills the invoice date box
         /// </summary>
         /// <returns></returns>
         public List<string> FillInvoiceDateBox()
@@ -209,7 +209,6 @@ namespace GroupProjectCS3280.Search
                 DataSet dsRows;
                 List<string> lstTotalCharges = new List<string>();
 
-                //Query to select Flights
                 int iRet = 0;
                 dsRows = db.ExecuteSQLStatement(SearchSQL.FillTotalBox, ref iRet);
 
