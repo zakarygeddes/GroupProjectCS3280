@@ -211,7 +211,7 @@ namespace GroupProjectCS3280.Items
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ItemComboBox_Loaded(object sender, RoutedEventArgs e)
+        private void ItemCodeCombo_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
