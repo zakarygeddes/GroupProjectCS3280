@@ -22,6 +22,7 @@ namespace GroupProjectCS3280.Items
         clsDataAccess cda;
         clsItemsLogic itemLogic;
         clsMainLogic mainLogic;
+        wndMain mainWindow;
 
         /// <summary>
         /// Initializer for the window
@@ -29,9 +30,11 @@ namespace GroupProjectCS3280.Items
         public wndItems() {
             try
             {
+                // initializes the required classes and windows
                 itemLogic = new clsItemsLogic();
                 cda = new clsDataAccess();
                 mainLogic = new clsMainLogic();
+                mainWindow = new wndMain();
 
                 DataSet ds = new DataSet();
                 ds = itemLogic.InitializeDataGrid(); //fill up with data
@@ -56,6 +59,8 @@ namespace GroupProjectCS3280.Items
             try
             {
                 this.Hide();
+                mainWindow.Activate(); //should bring up the main window again
+                mainWindow.Show();
                 e.Cancel = true;
             }
             catch (Exception ex)
@@ -77,6 +82,8 @@ namespace GroupProjectCS3280.Items
                 //valid invoice might go here too 
                 //basically, pass needed information back to main window via public variables
                 this.Close();
+                mainWindow.Activate();
+                mainWindow.Show();
             }
             catch (Exception ex)
             {
