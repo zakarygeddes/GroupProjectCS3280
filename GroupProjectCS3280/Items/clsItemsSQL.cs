@@ -14,7 +14,7 @@ namespace GroupProjectCS3280.Items
         /// <summary>
         /// creates a contact point between clsItemsSQL and clsDataAccess
         /// </summary>
-        clsDataAccess cda;
+        clsDataAccess cda = new clsDataAccess();
         /// <summary>
         /// this item is just for the fill box item in clsItemsLogic
         /// </summary>

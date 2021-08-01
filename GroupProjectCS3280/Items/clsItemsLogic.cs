@@ -35,6 +35,7 @@ namespace GroupProjectCS3280.Items
             try
             {
                 sql = new clsItemsSQL();
+                db = new clsDataAccess();
                 itemDesc = "";
             }
             catch (Exception ex)
@@ -203,7 +204,7 @@ namespace GroupProjectCS3280.Items
             {
                 string sqlStatement = sql.getAllSQLStatement;
                 int iRef = 0;
-                return db.ExecuteSQLStatement(sqlStatement, ref iRef);
+                return db.ExecuteSQLStatement(sqlStatement, ref iRef); //
             }
             catch (Exception ex)
             {
