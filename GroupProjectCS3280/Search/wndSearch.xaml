@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="wndSearch" Height="500" Width="500" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
-        <DataGrid x:Name="SearchDataGrid" HorizontalAlignment="Left" Height="333" Margin="10,66,0,0" VerticalAlignment="Top" Width="474" IsReadOnly="True"/>
-        <Button x:Name="SelectButton" Content="SELECT" HorizontalAlignment="Left" Margin="95,409,0,0" VerticalAlignment="Top" Width="93" Height="39" RenderTransformOrigin="0.538,0.395" Click="SelectButton_Click"/>
-        <Button x:Name="CancelButton" Content="CANCEL" HorizontalAlignment="Left" Margin="301,409,0,0" VerticalAlignment="Top" Width="93" Height="39" Click="CancelButton_Click"/>
+        <DataGrid x:Name="SearchDataGrid" HorizontalAlignment="Left" Height="333" Margin="7,66,0,0" VerticalAlignment="Top" Width="474" IsReadOnly="True"/>
+        <Button x:Name="SelectButton" Content="SELECT" HorizontalAlignment="Left" Margin="80,409,0,0" VerticalAlignment="Top" Width="93" Height="39" RenderTransformOrigin="0.538,0.395" Click="SelectButton_Click"/>
+        <Button x:Name="CancelButton" Content="CANCEL" HorizontalAlignment="Left" Margin="316,409,0,0" VerticalAlignment="Top" Width="93" Height="39" Click="CancelButton_Click"/>
         <ComboBox x:Name="InvoiceNumberBox" HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="InvoiceNumberBox_SelectionChanged"/>
         <ComboBox x:Name="InvoiceDateBox" HorizontalAlignment="Left" Margin="187,29,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="InvoiceDateBox_SelectionChanged"/>
         <ComboBox x:Name="TotalChargeBox" HorizontalAlignment="Left" Margin="341,29,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="TotalChargeBox_SelectionChanged"/>
+        <Label x:Name="lblInvoiceNum" Content="Invoice Number" HorizontalAlignment="Left" Margin="47,3,0,0" VerticalAlignment="Top" Width="111" FontWeight="Bold"/>
+        <Label x:Name="lblDate" Content="Date" HorizontalAlignment="Left" Margin="228,3,0,0" VerticalAlignment="Top" Width="73" FontWeight="Bold"/>
+        <Label x:Name="lblTotalCost" Content="Total Cost" HorizontalAlignment="Left" Margin="365,3,0,0" VerticalAlignment="Top" Width="73" FontWeight="Bold"/>
+        <Button x:Name="ResetButton" Content="RESET SEARCH" HorizontalAlignment="Left" Margin="198,409,0,0" VerticalAlignment="Top" Width="93" Height="39" Click="ResetButton_Click"/>
 
     </Grid>
 </Window>

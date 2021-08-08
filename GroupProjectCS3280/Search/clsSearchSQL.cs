@@ -91,18 +91,53 @@ namespace GroupProjectCS3280.Search
         }
 
         /// <summary>
-        /// Below is a collection of sql select statements
+        /// Selects invoices based on selected total and date
         /// </summary>
-        //Below code is not finished
+        /// <param name="total"></param>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public string SelectTotalAndDate(string total, string date)
+        {
+            try
+            {
+                return "SELECT * FROM Invoices WHERE TotalCost = " + total + " AND InvoiceDate = #" + date + "#";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-        public string SelectTotalAndDate = "SELECT * FROM Invoices WHERE TotalCost = $ AND InvoiceDate = #$#";
+        /// <summary>
+        /// Selects invoices based on date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public string SelectDate(string date)
+        {
+            try
+            {
+                return "SELECT * FROM Invoices WHERE InvoiceDate = #" + date + "#";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-        public string SelectDate = "SELECT * FROM Invoices WHERE InvoiceDate = #$#";
-
+        /// <summary>
+        /// Fills the invoice combo box
+        /// </summary>
         public string FillInvoiceBox = "SELECT DISTINCT InvoiceNum FROM Invoices";
 
+        /// <summary>
+        /// Fills the date combo box
+        /// </summary>
         public string FillDateBox = "SELECT DISTINCT InvoiceDate FROM Invoices";
 
+        /// <summary>
+        /// Fills the date combo box
+        /// </summary>
         public string FillTotalBox = "SELECT DISTINCT TotalCost FROM Invoices";
     }
 }

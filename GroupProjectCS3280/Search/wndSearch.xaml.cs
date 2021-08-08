@@ -223,6 +223,28 @@ namespace GroupProjectCS3280.Search
         }
 
         /// <summary>
+        /// Resets search parameters
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            InvoiceNumberBox.Text = "";
+            InvoiceDateBox.Text = "";
+            TotalChargeBox.Text = "";
+
+            List<clsInvoice> Rows;
+            string nullstring = null;
+            Rows = SearchLogic.RunQuery(nullstring, nullstring, nullstring); //Query will Select all Invoices
+
+            SearchDataGrid.Items.Clear();
+            foreach (clsInvoice Row in Rows)
+            {
+                SearchDataGrid.Items.Add(Row);
+            }
+        }
+
+        /// <summary>
         /// Keeps window from being disposed; really just hides the window instead of closing it
         /// </summary>
         /// <param name="sender"></param>

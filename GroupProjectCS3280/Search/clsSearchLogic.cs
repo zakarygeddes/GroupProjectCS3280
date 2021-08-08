@@ -126,10 +126,38 @@ namespace GroupProjectCS3280.Search
                 if (num == null && date != null && total != null)
                 {
                     //run SelectTotalAndDate
+
+                    DataSet dsRows;
+                    List<clsInvoice> lstInvoices = new List<clsInvoice>();
+
+                    int iRet = 0;
+                    dsRows = db.ExecuteSQLStatement(SearchSQL.SelectTotalAndDate(total,date), ref iRet);
+
+                    for (int i = 0; i < iRet; i++)
+                    {
+                        clsInvoice Invoice = new clsInvoice(dsRows.Tables[0].Rows[i][0].ToString(), dsRows.Tables[0].Rows[i][1].ToString(), dsRows.Tables[0].Rows[i][2].ToString());
+                        lstInvoices.Add(Invoice);
+                    }
+
+                    return lstInvoices;
                 }
                 if (num == null && date != null && total == null)
                 {
                     //run SelectDate
+
+                    DataSet dsRows;
+                    List<clsInvoice> lstInvoices = new List<clsInvoice>();
+
+                    int iRet = 0;
+                    dsRows = db.ExecuteSQLStatement(SearchSQL.SelectDate(date), ref iRet);
+
+                    for (int i = 0; i < iRet; i++)
+                    {
+                        clsInvoice Invoice = new clsInvoice(dsRows.Tables[0].Rows[i][0].ToString(), dsRows.Tables[0].Rows[i][1].ToString(), dsRows.Tables[0].Rows[i][2].ToString());
+                        lstInvoices.Add(Invoice);
+                    }
+
+                    return lstInvoices;
                 }
 
                 //default return value
