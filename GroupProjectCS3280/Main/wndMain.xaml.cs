@@ -37,8 +37,26 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     public partial class wndMain : Window
     {
+        /// <summary>
+        /// variable for search page
+        /// </summary>
         wndSearch Search;
+        /// <summary>
+        /// variable for items page
+        /// </summary>
         wndItems Items;
+        /// <summary>
+        /// flag for new invoice check
+        /// </summary>
+        bool newInvoice;
+        /// <summary>
+        /// flag for editing invoice
+        /// </summary>
+        bool editInvoice;
+        /// <summary>
+        /// variable to hold main SQL class
+        /// </summary>
+        clsMainSQL clsMainSQL;
         /// <summary>
         /// Called when the Window initializes
         /// </summary>
@@ -47,8 +65,6 @@ namespace GroupProjectCS3280.Main
             try
             {
                 InitializeComponent();
-                
-
                 Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             }
             catch (Exception ex)
@@ -89,7 +105,14 @@ namespace GroupProjectCS3280.Main
             //this button click will also have to clear out whatever is being edited
             try
             {
-
+                clsMainSQL = new clsMainSQL();
+                DateTime date = txtDate.Text.ToString();
+                String item = cmbItems_SelectionChanged();
+                int cost = Int32.Parse(txtCost.Text.ToString());
+                int totalCost = 0;
+                clsMainSQL.addNewInvoice(date, totalCost);
+                string sSQL = clsMainSQL.getMaxInvoiceNum();
+                clsMainSQL.addNewLineItem(date, item, cost);
             }
             catch (Exception ex)
             {
@@ -172,6 +195,12 @@ namespace GroupProjectCS3280.Main
                 wndSearch Search = new wndSearch();
                 Search.ShowDialog();
             }
+        }
+
+        private string cmbItems_SelectionChanged()
+        {
+            String selected = cmbItems.SelectedItem.ToString();
+            return selected;
         }
     }
 }

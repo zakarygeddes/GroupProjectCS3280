@@ -134,6 +134,18 @@ namespace GroupProjectCS3280.Main
             }
         }
 
+        public string getMaxInvoiceNum()
+        {
+            try
+            {
+                return "SELECT MAX(InvoiceNum) from Invoices"; 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
     }
 }
