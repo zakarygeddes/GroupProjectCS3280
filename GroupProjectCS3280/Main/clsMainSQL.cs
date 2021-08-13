@@ -14,6 +14,17 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     class clsMainSQL
     {
+        public string getAllItems()
+        {
+            try
+            {
+                return "SELECT * from ItemDesc";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         /// <summary>
         /// used for UPDATE statement to edit invoices based on passed in invoice num
         /// </summary>
@@ -72,7 +83,7 @@ namespace GroupProjectCS3280.Main
         /// <param name="lineItemNum"></param>
         /// <param name="itemCode"></param>
         /// <returns></returns>
-        public string addNewLineItem(int invoiceNum, int lineItemNum, char itemCode)
+        public string addNewLineItem(int invoiceNum, int lineItemNum, string itemCode)
         {
             try
             {
@@ -94,7 +105,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                return "INSERT INTO Invoices(InvoiceDate, TotalCost) Values('#" + date + "#', " + cost + "')";
+                return "INSERT INTO Invoices(InvoiceDate, TotalCost) Values(#" + date + "#, " + cost + ");";
             }
             catch (Exception ex)
             {
