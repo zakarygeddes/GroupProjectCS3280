@@ -6,12 +6,11 @@ using System.Windows;
 
 namespace GroupProjectCS3280.Items
 {
+    /// <summary>
+    /// Contains all business logic for Items
+    /// </summary>
     class clsItemsLogic
     {
-        /// <summary>
-        /// Contains all business logic for Items
-        /// </summary>
-
         /// <summary>
         /// variables for window logic
         /// </summary>

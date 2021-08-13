@@ -15,13 +15,16 @@ namespace GroupProjectCS3280.Items
     public partial class wndItems : Window
     {
         /// <summary>
-        /// clsDataAccess is access to the db
-        /// itemLogic accesses item logic class
-        /// main logic is the window into passing information from the item box to the main window
+        /// accesses the database
         /// </summary>
         clsDataAccess cda;
+        /// <summary>
+        /// calls upon the clsItemLogic class
+        /// </summary>
         clsItemsLogic itemLogic;
-        clsMainLogic mainLogic;
+        /// <summary>
+        /// Calls the mainWindow
+        /// </summary>
         wndMain mainWindow;
 
         /// <summary>
@@ -33,7 +36,6 @@ namespace GroupProjectCS3280.Items
                 // initializes the required classes and windows
                 itemLogic = new clsItemsLogic();
                 cda = new clsDataAccess();
-                mainLogic = new clsMainLogic();
                 mainWindow = new wndMain();
 
                 DataSet ds = new DataSet();

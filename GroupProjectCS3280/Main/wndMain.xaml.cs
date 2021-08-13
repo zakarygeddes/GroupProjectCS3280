@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GroupProjectCS3280.Search;
 using GroupProjectCS3280.Items;
-using System.Reflection;
 
 /// <summary>
 /// Namespace for the project field
@@ -53,9 +52,7 @@ namespace GroupProjectCS3280.Main
         /// <summary>
         /// flag for editing invoice
         /// </summary>
-        bool isEditing;
-        int selectedIndex;
-        int totalCost;
+        bool editInvoice;
         /// <summary>
         /// variable to hold main SQL class
         /// </summary>
@@ -69,8 +66,6 @@ namespace GroupProjectCS3280.Main
             {
                 InitializeComponent();
                 Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-                fillcmbItems();
-                gridInputs.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -85,22 +80,12 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void cmbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //this class will be what handles filling the combo box, this will need to pull from the database,
+            //but also be aware of when updates have happened in the Items page code. I am thinking it will check
+            //a variable passed by items page out, like a bool for isUpdated
             try
             {
-                clsMainSQL clsMainSQL = new clsMainSQL();
-                clsMainLogic clsMainLogic = new clsMainLogic();
-                clsDataAccess db = new clsDataAccess();
-                List<clsItem> items = new List<clsItem>();
-                items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
-                selectedIndex = cmbItems.SelectedIndex;
-
-                for (int i = 0; i < items.Count; i++)
-                {
-                    if (selectedIndex == i)
-                    {
-                        txtCost.Text = items[i].cost;
-                    }
-                }
+             
             }
             catch (Exception ex)
             {
@@ -109,25 +94,25 @@ namespace GroupProjectCS3280.Main
         }
         /// <summary>
         /// Button to handle new invoice generation
-        /// allowing and disallowing certain button clicks 
-        /// and allowing the grid of inputs to be enabled
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnNewInvoice_Click(object sender, RoutedEventArgs e)
-        {          
+        {
+            //this will set a flag in the logic to say that I am making a new invoice, so that when the save button 
+            //at the bottom is clicked, it will know to run an INSERT and not an UPDATE
+            //it will also know to not fill the datagrid
+            //this button click will also have to clear out whatever is being edited
             try
             {
-                isEditing = false;
-                gridInputs.IsEnabled = true;
-                btnEnter.IsEnabled = true;
-                btnSave.IsEnabled = true;
-                btnEditInvoice.IsEnabled = false;
-                btnDeleteInvoice.IsEnabled = false;
-                dgInvoice.Items.Clear();
-                totalCost = 0;
-                DatePicker.SelectedDate = null;
-                txtInvoiceNum.Text = "TBD";
+                clsMainSQL = new clsMainSQL();
+                DateTime date = txtDate.Text.ToString();
+                String item = cmbItems_SelectionChanged();
+                int cost = Int32.Parse(txtCost.Text.ToString());
+                int totalCost = 0;
+                clsMainSQL.addNewInvoice(date, totalCost);
+                string sSQL = clsMainSQL.getMaxInvoiceNum();
+                clsMainSQL.addNewLineItem(date, item, cost);
             }
             catch (Exception ex)
             {
@@ -141,20 +126,13 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnEditInvoice_Click(object sender, RoutedEventArgs e)
         {
+            //this will need to grab the currently selected invoice from the search page
+            //i am thinking this will be a global variable so that all pages can access what 
+            //the search page has selected
             try
             {
-                isEditing = true;
-                btnNewInvoice.IsEnabled = false;
-                btnDeleteInvoice.IsEnabled = false;
-                btnEnter.IsEnabled = true;
-                btnSave.IsEnabled = true;
-
-                //take invoice num from new or search page
-                //if search page variable repopulate lbls and datagrid
-                //handle update instead of insert statements in save button area
-                //delete line items?
-                //add line items?
-
+                //this will populate the datagrid with the invoice passed from the search page
+                //this will have to be in some sort of global class/variable/ potentiall an object manager type
             }
             catch (Exception ex)
             {
@@ -168,10 +146,12 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnDeleteInvoice_Click(object sender, RoutedEventArgs e)
         {
+            //it will interact with both logic and sql classes 
+            //this will run both a search and delete function. I am thinking it pulls up the selected invoice number
+            //then presents the delete as a second chance
             try
             {
-                //populate dg and labels with either new invoice or variable from search class
-                //handle deleting from db through logic and sql classes
+
             }
             catch (Exception ex)
             {
@@ -189,31 +169,11 @@ namespace GroupProjectCS3280.Main
             //creating full sql statement strings
             try
             {
-                clsMainSQL = new clsMainSQL(); 
-                clsMainLogic clsMainLogic = new clsMainLogic();
-                clsDataAccess db = new clsDataAccess();
-                List<clsItem> items = new List<clsItem>();
-                items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
-                selectedIndex = cmbItems.SelectedIndex;
-                clsItem item;
 
-                for (int i = 0; i < items.Count; i++)
-                {
-                    if (selectedIndex == i)
-                    {
-                        item = items[i];
-                        totalCost += Int32.Parse(item.cost);
-                        lblTotalCostNum.Content = totalCost.ToString();
-                        dgInvoice.Items.Add(item);
-                    }
-                }
-
-               
-                
             }
             catch (Exception ex)
             {
-                throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
+                throw new Exception(ex.Message);
             }
         }
         /// <summary>
@@ -228,7 +188,6 @@ namespace GroupProjectCS3280.Main
                 this.Hide();
                 wndItems Items = new wndItems();
                 Items.ShowDialog();
-                fillcmbItems();
             }
             if (ctrlSearch.IsChecked == true)
             {
@@ -238,59 +197,10 @@ namespace GroupProjectCS3280.Main
             }
         }
 
-        private void fillcmbItems()
+        private string cmbItems_SelectionChanged()
         {
-            clsMainSQL clsMainSQL = new clsMainSQL();
-            clsMainLogic clsMainLogic = new clsMainLogic();
-            clsDataAccess db = new clsDataAccess();
-            List<clsItem> items = new List<clsItem>();
-
-            items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
-
-            for(int i = 0; i<items.Count; i++)
-            {
-                cmbItems.Items.Add(items[i].description);
-            }
-
-        }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            clsMainSQL clsMainSQL = new clsMainSQL();
-            clsMainLogic clsMainLogic = new clsMainLogic();
-            clsDataAccess db = new clsDataAccess();
-            DateTime date = DatePicker.SelectedDate.Value;
-
-            if (!isEditing)
-            {
-                string sSQL = clsMainSQL.addNewInvoice(date, totalCost);
-                clsMainLogic.addInvoice(db, sSQL);
-
-                sSQL = clsMainSQL.getMaxInvoiceNum();
-                int invoiceNum = clsMainLogic.maxInvoiceNum(db, sSQL);
-                txtInvoiceNum.Text = invoiceNum.ToString();
-
-                List<clsItem> items = new List<clsItem>();
-                for (int i = 0; i < dgInvoice.Items.Count; i++)
-                {
-                    items.Add((clsItem)dgInvoice.Items.GetItemAt(i));
-                }
-
-                for (int i = 0; i < items.Count; i++)
-                {
-                    sSQL = clsMainSQL.addNewLineItem(invoiceNum, (i + 1), items[i].code);
-                    clsMainLogic.addLineItem(db, sSQL);
-                }
-            }
-            else
-            {
-                //TODO handle editing logic and sql and populating datagrid?
-            }
-
-            
-            btnSave.IsEnabled = false;
-            btnEnter.IsEnabled = false;
-            btnEditInvoice.IsEnabled = true;
-            btnDeleteInvoice.IsEnabled = true;
+            String selected = cmbItems.SelectedItem.ToString();
+            return selected;
         }
     }
 }
