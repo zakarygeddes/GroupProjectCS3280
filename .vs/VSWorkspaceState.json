@@ -1,6 +1,15 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     ""
   ],
+=======
+    "",
+    "\\GroupProjectCS3280",
+    "\\GroupProjectCS3280\\Items",
+    "\\GroupProjectCS3280\\Main"
+  ],
+  "SelectedNode": "\\GroupProjectCS3280\\Main\\wndMain.xaml",
+>>>>>>> 90e78b0d8f167abb693853ca797abd0d3927d0cc
   "PreviewInSolutionExplorer": false
 }

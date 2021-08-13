@@ -4,12 +4,20 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\alexf\Source\Repos\GroupProjectCS3280\GroupProjectCS3280\obj\Release\
+=======
+C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\obj\Release\
+>>>>>>> 90e78b0d8f167abb693853ca797abd0d3927d0cc
 GroupProjectCS3280
 none
 false
 TRACE
+<<<<<<< HEAD
 C:\Users\alexf\Source\Repos\GroupProjectCS3280\GroupProjectCS3280\App.xaml
+=======
+C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\App.xaml
+>>>>>>> 90e78b0d8f167abb693853ca797abd0d3927d0cc
 31777445889
 
 15-1258729277
