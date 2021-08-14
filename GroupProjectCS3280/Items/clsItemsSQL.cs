@@ -76,7 +76,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (" + code + "," + desc + "," + cost +")";
+                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (\u0022" + code + "\u0022,\u0022" + desc + "\u0022," + cost +")";
                 //int row = 0;
                 //DataSet query = new DataSet();
                 //query = cda.ExecuteSQLStatement(insertSQL, ref row);
@@ -99,7 +99,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string getNumSQL = $"SELECT DISTINCT(InvoiceNum) FROM LineItems WHERE ItemCode = `{code}`";
+                string getNumSQL = $"SELECT DISTINCT(InvoiceNum) FROM LineItems WHERE ItemCode = \u0022{code}\u0022";
                 int row = 0;
                 DataSet getQuery = new DataSet();
                 getQuery = cda.ExecuteSQLStatement(getNumSQL, ref row);
@@ -124,7 +124,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string updateSQL = $"UPDATE ItemDesc SET ItemCode = `{code}`, ItemDesc = `{desc}`, Cost = {cost} WHERE ItemCode = `{code}`";
+                string updateSQL = $"UPDATE ItemDesc SET ItemCode = \u0022{code}\u0022, ItemDesc = \u0022{desc}\u0022, Cost = {cost} WHERE ItemCode = \u0022{code}\u0022";
                 //int row = 0;
                 //DataSet update = new DataSet();
                 //update = cda.ExecuteSQLStatement(updateSQL, ref row);
@@ -148,7 +148,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string updateDescSQL = $"UPDATE ItemDesc SET ItemDesc = `{desc}` WHERE ItemCode = `{code}`";
+                string updateDescSQL = $"UPDATE ItemDesc SET ItemDesc = \u0022{desc}\u0022 WHERE ItemCode = \u0022{code}\u0022";
                 //int row = 0;
                 //DataSet update = new DataSet();
                 //update = cda.ExecuteSQLStatement(updateDescSQL, ref row); //error
@@ -172,7 +172,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string updateCostSQL = $"UPDATE ItemDesc SET Cost = {cost} WHERE ItemCode = `{code}`";
+                string updateCostSQL = $"UPDATE ItemDesc SET Cost = {cost} WHERE ItemCode = \u0022{code}\u0022";
                 //int row = 0;
                 //DataSet update = new DataSet();
                 //update = cda.ExecuteSQLStatement(updateCostSQL, ref row);
