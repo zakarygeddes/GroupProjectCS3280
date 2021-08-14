@@ -104,6 +104,30 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<clsItem> getLineItemsFromInvoice(clsDataAccess db, string sSQL)
+        {
+            try
+            {
+                DataSet ds;
+                List<clsItem> items = new List<clsItem>();
+
+                int iRet = 0;
+                ds = db.ExecuteSQLStatement(sSQL, ref iRet);
+
+                for (int i = 0; i < iRet; i++)
+                {
+                    clsItem item = new clsItem(ds.Tables[0].Rows[i][0].ToString(), ds.Tables[0].Rows[i][1].ToString(), ds.Tables[0].Rows[i][2].ToString());
+                    items.Add(item);
+                }
+
+                return items;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
 
