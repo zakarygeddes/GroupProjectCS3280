@@ -39,7 +39,6 @@ D:\Classwork\Summer 2021\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\GroupPr
 D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\bin\Debug\GroupProjectCS3280.exe.config
 D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\bin\Debug\GroupProjectCS3280.exe
 D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\bin\Debug\GroupProjectCS3280.pdb
-D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\GroupProjectCS3280.csproj.AssemblyReference.cache
 D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\Items\wndItems.g.cs
 D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\Main\wndMain.g.cs
 D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\Search\wndSearch.g.cs

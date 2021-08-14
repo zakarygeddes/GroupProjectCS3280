@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         Title="wndItems" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
-        <DataGrid x:Name="SearchItemsDataGrid" HorizontalAlignment="Left" Height="399" Margin="301,10,0,0" VerticalAlignment="Top" Width="481">
-            <DataGrid.Columns x:Name="colItemCode"/>
-        </DataGrid>
+        <DataGrid x:Name="SearchItemsDataGrid" HorizontalAlignment="Left" Height="399" Margin="301,10,0,0" VerticalAlignment="Top" Width="481" />
         <Button x:Name="NewItemBtn" Content="Insert New Item" HorizontalAlignment="Left" Margin="93,145,0,0" VerticalAlignment="Top" Width="107" Click="NewItemBtn_Click"/>
         <ComboBox x:Name="ItemCodeCombo" Loaded="ItemCodeCombo_Loaded" HorizontalAlignment="Left" Margin="170,192,0,0" VerticalAlignment="Top" Width="63"/>
         <TextBox x:Name="NewItemCodeTxt" HorizontalAlignment="Left" Height="23" Margin="149,34,0,0" TextWrapping="Wrap" Text="i.e. 'AA'" VerticalAlignment="Top" Width="120"/>
