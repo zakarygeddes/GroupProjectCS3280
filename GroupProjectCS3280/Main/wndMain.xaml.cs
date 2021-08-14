@@ -304,6 +304,16 @@ namespace GroupProjectCS3280.Main
                     sSQL = clsMainSQL.addNewLineItem(invoiceNum, (i + 1), items[i].code);
                     clsMainLogic.addLineItem(db, sSQL);
                 }
+
+                sSQL = clsMainSQL.getLineItemsFromInvoice(invoiceNum);
+                List<clsItem> dgItems = new List<clsItem>();
+                dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
+                dgInvoice.Items.Clear();
+                for (int i = 0; i < dgItems.Count; i++)
+                {
+                    dgInvoice.Items.Add(dgItems[i]);
+                }
+
             }
             else
             {
