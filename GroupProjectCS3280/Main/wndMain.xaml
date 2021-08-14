@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="wndMain" Height="507.778" Width="800">
     <Grid>
-        <Menu HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="67">
+        <Menu HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="80">
             <MenuItem Header="Options" Click="MenuItem_Click">
                 <MenuItem x:Name="ctrlEditItem" Header="Edit Items" IsCheckable="true"/>
                 <MenuItem x:Name="ctrlSearch" Header="Search Invoices" IsCheckable="true"/>
