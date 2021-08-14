@@ -52,6 +52,30 @@ namespace GroupProjectCS3280.Main
             }
         }
 
+        public void deleteInvoice(clsDataAccess db, string sSQL)
+        {
+            try
+            {
+                db.ExecuteNonQuery(sSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void deleteLineItems(clsDataAccess db, string sSQL)
+        {
+            try
+            {
+                db.ExecuteNonQuery(sSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public void addLineItem(clsDataAccess db, string sSQL)
         {
             try

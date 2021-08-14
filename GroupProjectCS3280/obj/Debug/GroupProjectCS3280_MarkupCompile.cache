@@ -4,25 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< HEAD
-C:\Users\alexf\Source\Repos\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\
-=======
 C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\
->>>>>>> 90e78b0d8f167abb693853ca797abd0d3927d0cc
 GroupProjectCS3280
 none
 false
 DEBUG;TRACE
-<<<<<<< HEAD
-C:\Users\alexf\Source\Repos\GroupProjectCS3280\GroupProjectCS3280\App.xaml
-=======
 C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\App.xaml
->>>>>>> 90e78b0d8f167abb693853ca797abd0d3927d0cc
 31777445889
 
-15-1258729277
+161401943454
 13-1505183044
 Items\wndItems.xaml;Main\wndMain.xaml;Search\wndSearch.xaml;
 
-True
+False
 

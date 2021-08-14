@@ -32,7 +32,7 @@ namespace GroupProjectCS3280.Main
     //populate its combo box with new items if that has been updated.
     //I am not sure if passing some sort of boolean flag out of that page to mark whether
     //it has been updated so that then the combobox knows to refresh
-
+   
     /// <summary>
     /// Interaction logic for wndMain.xaml
     /// </summary>
@@ -56,6 +56,9 @@ namespace GroupProjectCS3280.Main
         bool isEditing;
         int selectedIndex;
         int totalCost;
+        int invoice;
+        public int selectedInvoiceNum;
+        string selectedCode;
         /// <summary>
         /// variable to hold main SQL class
         /// </summary>
@@ -148,6 +151,8 @@ namespace GroupProjectCS3280.Main
                 btnDeleteInvoice.IsEnabled = false;
                 btnEnter.IsEnabled = true;
                 btnSave.IsEnabled = true;
+                
+
 
                 //take invoice num from new or search page
                 //if search page variable repopulate lbls and datagrid
@@ -172,6 +177,16 @@ namespace GroupProjectCS3280.Main
             {
                 //populate dg and labels with either new invoice or variable from search class
                 //handle deleting from db through logic and sql classes
+                clsMainSQL = new clsMainSQL();
+                clsMainLogic clsMainLogic = new clsMainLogic();
+                clsDataAccess db = new clsDataAccess();
+                List<clsItem> items = new List<clsItem>();
+                String sSQL= clsMainSQL.deleteLineItems(Int32.Parse(txtInvoiceNum.Text));
+                clsMainLogic.deleteLineItems(db, sSQL);
+                sSQL = clsMainSQL.deleteInvoices(Int32.Parse(txtInvoiceNum.Text));
+                clsMainLogic.deleteInvoice(db, sSQL);
+                dgInvoice.Items.Clear();
+                txtInvoiceNum.Text = "";
             }
             catch (Exception ex)
             {
@@ -291,6 +306,12 @@ namespace GroupProjectCS3280.Main
             btnEnter.IsEnabled = false;
             btnEditInvoice.IsEnabled = true;
             btnDeleteInvoice.IsEnabled = true;
+        }
+
+        private void dgInvoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            clsItem item = (clsItem) dgInvoice.SelectedItem;
+            selectedCode = item.code;
         }
     }
 }
