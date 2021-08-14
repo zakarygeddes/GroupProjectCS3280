@@ -19,6 +19,10 @@ namespace GroupProjectCS3280.Items
         /// Access to database
         /// </summary>
         private clsDataAccess db;
+        /// <summary>
+        /// access wndItems
+        /// </summary>
+        private wndItems items;
 
         /// <summary>
         /// stores the item description string
@@ -106,7 +110,10 @@ namespace GroupProjectCS3280.Items
                 }
                 else
                 {
-                    sql.InsertItem(itemCode, desc, cost);
+                    string sqlStatement = sql.InsertItem(itemCode, desc, cost);
+                    var result = db.ExecuteScalarSQL(sqlStatement);
+
+                    items.RefreshDataWindow();
                 }
             }
             catch (Exception ex)
@@ -150,7 +157,10 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                sql.UpdateAllItems(code, desc, cost);
+                string sqlStatement = sql.UpdateAllItems(code, desc, cost);
+                db.ExecuteNonQuery(sqlStatement);
+
+                items.RefreshDataWindow();
             }
             catch (Exception ex)
             {
@@ -167,7 +177,10 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                sql.UpdateDesc(code, desc);
+                string sqlStatement = sql.UpdateDesc(code, desc);
+                db.ExecuteNonQuery(sqlStatement);
+
+                items.RefreshDataWindow();
             }
             catch (Exception ex)
             {
@@ -184,7 +197,10 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                sql.UpdateCost(code, cost);
+                string sqlStatement = sql.UpdateCost(code, cost);
+                db.ExecuteNonQuery(sqlStatement);
+
+                items.RefreshDataWindow();
             }
             catch (Exception ex)
             {
@@ -197,13 +213,13 @@ namespace GroupProjectCS3280.Items
         /// For initializing the dataGrid and filling its contents
         /// </summary>
         /// <returns></returns>
-        public DataSet InitializeDataGrid()
+        public DataSet InitializeDataGrid() //this populates fine
         {
             try
             {
                 string sqlStatement = sql.getAllSQLStatement;
                 int iRef = 0;
-                return db.ExecuteSQLStatement(sqlStatement, ref iRef); //
+                return db.ExecuteSQLStatement(sqlStatement, ref iRef); 
             }
             catch (Exception ex)
             {

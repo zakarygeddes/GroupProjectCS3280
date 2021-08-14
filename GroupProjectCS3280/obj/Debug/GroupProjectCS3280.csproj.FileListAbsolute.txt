@@ -73,3 +73,4 @@ C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\Grou
 C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\GroupProjectCS3280.Properties.Resources.resources
 C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\GroupProjectCS3280.csproj.GenerateResource.cache
 C:\Users\alexf\source\repos\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\GroupProjectCS3280.csproj.CoreCompileInputs.cache
+D:\3280_2021\GroupProjectCS3280\GroupProjectCS3280\obj\Debug\GroupProjectCS3280.csproj.AssemblyReference.cache

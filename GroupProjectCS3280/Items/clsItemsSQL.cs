@@ -72,17 +72,17 @@ namespace GroupProjectCS3280.Items
         /// <param name="desc"></param>
         /// <param name="cost"></param>
         /// <returns></returns>
-        public DataTable InsertItem(string code, string desc, int cost)
+        public string InsertItem(string code, string desc, int cost)
         {
             try
             {
-                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (`{code}`, `{desc}`, `{cost}`)";
-                int row = 0;
-                DataSet query = new DataSet();
-                query = cda.ExecuteSQLStatement(insertSQL, ref row);
-                DataTable insertQuery = query.Tables[insertSQL];
+                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (" + code + "," + desc + "," + cost +")";
+                //int row = 0;
+                //DataSet query = new DataSet();
+                //query = cda.ExecuteSQLStatement(insertSQL, ref row);
+                //DataTable insertQuery = query.Tables[insertSQL];
 
-                return insertQuery;
+                return insertSQL;
             }
             catch (Exception ex)
             {
@@ -114,23 +114,23 @@ namespace GroupProjectCS3280.Items
         }
 
         /// <summary>
-        /// Updates a table based on the itemcode
+        /// Updates a table based on the itemcode sql
         /// </summary>
         /// <param name="code"></param>
         /// <param name="desc"></param>
         /// <param name="cost"></param>
         /// <returns></returns>
-        public DataTable UpdateAllItems(string code, string desc, int cost)
+        public string UpdateAllItems(string code, string desc, int cost)
         {
             try
             {
                 string updateSQL = $"UPDATE ItemDesc SET ItemCode = `{code}`, ItemDesc = `{desc}`, Cost = {cost} WHERE ItemCode = `{code}`";
-                int row = 0;
-                DataSet update = new DataSet();
-                update = cda.ExecuteSQLStatement(updateSQL, ref row);
-                DataTable dt = update.Tables[updateSQL];
+                //int row = 0;
+                //DataSet update = new DataSet();
+                //update = cda.ExecuteSQLStatement(updateSQL, ref row);
+                //DataTable dt = update.Tables[updateSQL];
 
-                return dt;
+                return updateSQL;
             }
             catch (Exception ex)
             {
@@ -139,22 +139,22 @@ namespace GroupProjectCS3280.Items
         }
 
         /// <summary>
-        /// Updates item description using the item code as a unique identifier
+        /// Returns update description sql
         /// </summary>
         /// <param name="code"></param>
         /// <param name="desc"></param>
         /// <returns></returns>
-        public DataTable UpdateDesc(string code, string desc)
+        public string UpdateDesc(string code, string desc)
         {
             try
             {
                 string updateDescSQL = $"UPDATE ItemDesc SET ItemDesc = `{desc}` WHERE ItemCode = `{code}`";
-                int row = 0;
-                DataSet update = new DataSet();
-                update = cda.ExecuteSQLStatement(updateDescSQL, ref row); //error
-                DataTable dt = update.Tables[updateDescSQL];
+                //int row = 0;
+                //DataSet update = new DataSet();
+                //update = cda.ExecuteSQLStatement(updateDescSQL, ref row); //error
+                //DataTable dt = update.Tables[updateDescSQL];
 
-                return dt;
+                return updateDescSQL;
             }
             catch (Exception ex)
             {
@@ -163,22 +163,22 @@ namespace GroupProjectCS3280.Items
         }
 
         /// <summary>
-        /// Updates item cost using item code as a unique identifier
+        /// Returns the update item cost string
         /// </summary>
         /// <param name="code"></param>
         /// <param name="cost"></param>
         /// <returns></returns>
-        public DataTable UpdateCost(string code, int cost)
+        public string UpdateCost(string code, int cost)
         {
             try
             {
                 string updateCostSQL = $"UPDATE ItemDesc SET Cost = {cost} WHERE ItemCode = `{code}`";
-                int row = 0;
-                DataSet update = new DataSet();
-                update = cda.ExecuteSQLStatement(updateCostSQL, ref row);
-                DataTable dt = update.Tables[updateCostSQL];
+                //int row = 0;
+                //DataSet update = new DataSet();
+                //update = cda.ExecuteSQLStatement(updateCostSQL, ref row);
+                //DataTable dt = update.Tables[updateCostSQL];
 
-                return dt;
+                return updateCostSQL;
             }
             catch (Exception ex)
             {
