@@ -110,10 +110,7 @@ namespace GroupProjectCS3280.Search
         {
             try
             {
-                clsInvoice selectedInvoice = (clsInvoice)SearchDataGrid.SelectedItem;
-
-                // Pass selectedInvoice to mainWindow
-                // Ask for public variables in main class, then set that public variable (i.e. main.selectedInvoice = selectedInvoice)
+                GlobalVariables.selectedInvoice = (clsInvoice)SearchDataGrid.SelectedItem;
 
                 this.Hide();
                 mainWindow.Activate();
