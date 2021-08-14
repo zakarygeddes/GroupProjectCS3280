@@ -80,9 +80,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                //current invoice id, if we have one, will go here 
-                //valid invoice might go here too 
-                //basically, pass needed information back to main window via public variables
+                mainWindow.selectedInvoiceNum = -1; //no object should be selected for items. Items window is for editing items only.
                 this.Close();
                 mainWindow.Activate();
                 mainWindow.Show();
@@ -152,7 +150,8 @@ namespace GroupProjectCS3280.Items
                 if (ItemCodeCombo.SelectedItem != null) //item code should have been selected
                 {
                     string code = ItemCodeCombo.SelectedItem.ToString(); //get the item code
-                    string desc = '"' + EditItemDescTxt.Text + '"'; //put quotes around item description
+                    //string test = SearchItemsDataGrid.SelectedItem.ToString();
+                    string desc = EditItemDescTxt.Text;
                     bool check = int.TryParse(EditItemCostTxt.Text, out int cost); //check if entered information is an integer
 
                     if (EditItemDescCheck.IsChecked == true && EditItemCostCheck.IsChecked == true) //edit both
@@ -167,7 +166,7 @@ namespace GroupProjectCS3280.Items
                     }
                     else if (EditItemDescCheck.IsChecked == true && EditItemCostCheck.IsChecked == false) //edit only description
                     {
-                        itemLogic.EditDesc(code, desc);
+                        itemLogic.EditDesc(code, desc); //error happens here
                     }
                     else if (EditItemDescCheck.IsChecked == false && EditItemCostCheck.IsChecked == true) //edit only cost
                     {
@@ -193,7 +192,7 @@ namespace GroupProjectCS3280.Items
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message); //throws an error here
             }
         }
 

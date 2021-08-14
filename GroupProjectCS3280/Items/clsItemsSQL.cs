@@ -151,7 +151,7 @@ namespace GroupProjectCS3280.Items
                 string updateDescSQL = $"UPDATE ItemDesc SET ItemDesc = `{desc}` WHERE ItemCode = `{code}`";
                 int row = 0;
                 DataSet update = new DataSet();
-                update = cda.ExecuteSQLStatement(updateDescSQL, ref row);
+                update = cda.ExecuteSQLStatement(updateDescSQL, ref row); //error
                 DataTable dt = update.Tables[updateDescSQL];
 
                 return dt;

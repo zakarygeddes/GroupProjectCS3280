@@ -12,17 +12,17 @@ namespace GroupProjectCS3280.Items
     class clsItemsLogic
     {
         /// <summary>
-        /// variables for window logic
+        /// Access to the queries
         /// </summary>
-        private clsMainLogic mainLogic;
         private clsItemsSQL sql;
+        /// <summary>
+        /// Access to database
+        /// </summary>
         private clsDataAccess db;
 
         /// <summary>
-        /// variables for item descriptors
+        /// stores the item description string
         /// </summary>
-        private string itemCode;
-        private int cost;
         private string itemDesc;
 
 

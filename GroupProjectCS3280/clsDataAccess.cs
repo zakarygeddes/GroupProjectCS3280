@@ -64,7 +64,7 @@ namespace GroupProjectCS3280
                         adapter.SelectCommand.CommandTimeout = 0;
 
                         //Fill up the DataSet with data
-                        adapter.Fill(ds);
+                        adapter.Fill(ds); //edit item desc throws an error here
                     }
                 }
 
