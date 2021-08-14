@@ -75,6 +75,19 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
+        public string deleteLineItemsFromInvoice(int invoiceNum, int linenum, string code)
+        {
+            try
+            {
+                return "DELETE From ItemDesc WHERE InvoiceNum = " + invoiceNum + " AND LineItemNum =  " +linenum+ " AND ItemCode ='" + code + "';";
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         /// <summary>
         /// This is to add a new LineItem, when an Invoice is added, this will also run to update that table
         /// appropiately
@@ -145,7 +158,7 @@ namespace GroupProjectCS3280.Main
             }
         }
 
-        public string getMaxInvoiceNum()
+        public string getMaxInvoiceNum()  
         {
             try
             {

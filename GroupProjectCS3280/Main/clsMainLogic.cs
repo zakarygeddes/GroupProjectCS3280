@@ -67,7 +67,7 @@ namespace GroupProjectCS3280.Main
         public void deleteLineItems(clsDataAccess db, string sSQL)
         {
             try
-            {
+            {       //get selected index from dbinvoice
                 db.ExecuteNonQuery(sSQL);
             }
             catch (Exception ex)

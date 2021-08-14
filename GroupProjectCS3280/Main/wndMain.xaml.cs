@@ -58,6 +58,7 @@ namespace GroupProjectCS3280.Main
         int totalCost;
         int invoice;
         public int selectedInvoiceNum;
+        int index;
         string selectedCode;
         /// <summary>
         /// variable to hold main SQL class
@@ -151,8 +152,14 @@ namespace GroupProjectCS3280.Main
                 btnDeleteInvoice.IsEnabled = false;
                 btnEnter.IsEnabled = true;
                 btnSave.IsEnabled = true;
-                
+                btnDeleteLine.Visibility = Visibility.Visible;
 
+           
+
+
+
+                
+                
 
                 //take invoice num from new or search page
                 //if search page variable repopulate lbls and datagrid
@@ -282,6 +289,8 @@ namespace GroupProjectCS3280.Main
 
                 sSQL = clsMainSQL.getMaxInvoiceNum();
                 int invoiceNum = clsMainLogic.maxInvoiceNum(db, sSQL);
+                selectedInvoiceNum = invoiceNum;
+
                 txtInvoiceNum.Text = invoiceNum.ToString();
 
                 List<clsItem> items = new List<clsItem>();
@@ -312,6 +321,16 @@ namespace GroupProjectCS3280.Main
         {
             clsItem item = (clsItem) dgInvoice.SelectedItem;
             selectedCode = item.code;
+            index = dgInvoice.SelectedIndex;
+        }
+
+        private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
+        {
+            clsMainSQL = new clsMainSQL();
+            clsMainLogic clsMainLogic = new clsMainLogic();
+            clsDataAccess db = new clsDataAccess();
+            string sSQL = clsMainSQL.deleteLineItemsFromInvoice(selectedInvoiceNum, index, selectedCode);
+            clsMainLogic.deleteLineItems(db, sSQL);
         }
     }
 }
