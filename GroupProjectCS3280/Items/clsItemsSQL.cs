@@ -76,7 +76,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES (" + code + "," + desc + "," + cost +")";
+                string insertSQL = $"INSERT INTO ItemDesc(ItemCode, ItemDesc, Cost) VALUES ('{code}','{desc}',{cost})";
                 //int row = 0;
                 //DataSet query = new DataSet();
                 //query = cda.ExecuteSQLStatement(insertSQL, ref row);
@@ -124,7 +124,7 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                string updateSQL = $"UPDATE ItemDesc SET ItemCode = '{code}', ItemDesc = '{desc}', Cost = {cost} WHERE ItemCode = '{code}'";
+                string updateSQL = $"UPDATE ItemDesc SET ItemDesc = '{desc}', Cost = {cost} WHERE ItemCode = '{code}'";
                 //int row = 0;
                 //DataSet update = new DataSet();
                 //update = cda.ExecuteSQLStatement(updateSQL, ref row);
