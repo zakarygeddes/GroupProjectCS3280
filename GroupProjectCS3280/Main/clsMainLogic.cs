@@ -44,6 +44,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// adds an invoice to the database
         /// </summary>
@@ -60,6 +61,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// deletes an invoice from the database
         /// </summary>
@@ -76,6 +78,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// delete an item from the database
         /// </summary>
@@ -92,6 +95,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// adds a line item to the database
         /// </summary>
@@ -108,6 +112,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// logic for grabbing max invoice number from database
         /// </summary>
@@ -130,6 +135,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// logic for gettting line items from invoice
         /// </summary>
