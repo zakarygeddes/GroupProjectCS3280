@@ -86,11 +86,11 @@ namespace GroupProjectCS3280.Main
         /// <param name="linenum"></param>
         /// <param name="code"></param>
         /// <returns></returns>
-        public string deleteLineItemsFromInvoice(int invoiceNum, int linenum, string code)
+        public string deleteLineItemsFromInvoice(int invoiceNum, int linenum)
         {
             try
             {
-                return "DELETE From ItemDesc WHERE InvoiceNum = " + invoiceNum + " AND LineItemNum =  " +linenum+ " AND ItemCode ='" + code + "';";
+                return "DELETE FROM ItemDesc WHERE InvoiceNum = " + invoiceNum + " AND LineItemNum =  " +linenum+ ";";
 
             }
             catch (Exception ex)

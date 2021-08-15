@@ -14,7 +14,7 @@
             </MenuItem>
         </Menu>
         <Grid x:Name="gridInputs" HorizontalAlignment="Left" Height="420" Margin="10,51,0,0" VerticalAlignment="Top" Width="779">
-            <DataGrid x:Name="dgInvoice" DataContext="items" HorizontalAlignment="Left" Height="234" Margin="178,142,0,-42" VerticalAlignment="Top" Width="432">
+            <DataGrid x:Name="dgInvoice" DataContext="items" HorizontalAlignment="Left" Height="234" Margin="178,142,0,-42" VerticalAlignment="Top" SelectionChanged="dgInvoice_SelectionChanged" Width="432">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="colDesc" Header="Description" Binding="{Binding Path=description}" Width="200"></DataGridTextColumn>
                 <DataGridTextColumn x:Name="colCost" Header="Cost" Binding="{Binding Path=cost}" Width="69"></DataGridTextColumn>
