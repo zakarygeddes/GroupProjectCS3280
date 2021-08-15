@@ -174,7 +174,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                return "SELECT ItemDesc.InvoiceNum, ItemDesc.ItemDesc, ItemDesc.Cost FROM ItemDesc INNER JOIN LineItems ON ItemDesc.Itemcode = LineItems.ItemCode WHERE LineItems.InvoiceNum = " + invoicenum + ";";
+                return "SELECT LineItems.InvoiceNum, ItemDesc.ItemDesc, ItemDesc.Cost FROM ItemDesc INNER JOIN LineItems ON ItemDesc.Itemcode = LineItems.ItemCode WHERE LineItems.InvoiceNum = " + invoicenum + ";";
             }
             catch (Exception ex)
             {

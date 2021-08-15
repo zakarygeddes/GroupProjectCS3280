@@ -154,19 +154,6 @@ namespace GroupProjectCS3280.Main
                 btnSave.IsEnabled = true;
                 btnDeleteLine.Visibility = Visibility.Visible;
 
-           
-
-
-
-                
-                
-
-                //take invoice num from new or search page
-                //if search page variable repopulate lbls and datagrid
-                //handle update instead of insert statements in save button area
-                //delete line items?
-                //add line items?
-
             }
             catch (Exception ex)
             {
@@ -194,6 +181,11 @@ namespace GroupProjectCS3280.Main
                 clsMainLogic.deleteInvoice(db, sSQL);
                 dgInvoice.Items.Clear();
                 txtInvoiceNum.Text = "";
+                DatePicker.SelectedDate = null;
+                cmbItems.SelectedItem = "";
+                GlobalVariables.selectedInvoice = null;
+                btnDeleteInvoice.IsEnabled = false;
+                btnEditInvoice.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -266,7 +258,26 @@ namespace GroupProjectCS3280.Main
             {
                 this.Hide();
                 wndSearch Search = new wndSearch();
+          
                 Search.ShowDialog();
+
+
+                string sSQL = "";
+                clsDataAccess db = new clsDataAccess();
+                clsMainLogic clsMainLogic = new clsMainLogic();
+                clsInvoice invoice = GlobalVariables.selectedInvoice;
+                clsMainSQL = new clsMainSQL();
+                sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
+                List<clsItem> dgItems = new List<clsItem>();
+                db = new clsDataAccess();
+                dgInvoice.Items.Clear();
+                dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
+
+                for (int i = 0; i < dgItems.Count; i++)
+                {
+                    dgInvoice.Items.Add(dgItems[i]);
+                }
+                dgInvoice.Items.Refresh();
             }
         }
 
@@ -315,14 +326,24 @@ namespace GroupProjectCS3280.Main
                     clsMainLogic.addLineItem(db, sSQL);
                 }
 
-                sSQL = clsMainSQL.getLineItemsFromInvoice(invoiceNum);
+             
+              
+             
+                clsInvoice invoice = new clsInvoice(invoiceNum.ToString(), date.ToString(), totalCost.ToString());
+                GlobalVariables.selectedInvoice = invoice;
+
+                sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
                 List<clsItem> dgItems = new List<clsItem>();
-                dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
+                db = new clsDataAccess();
                 dgInvoice.Items.Clear();
+                dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
+              
                 for (int i = 0; i < dgItems.Count; i++)
                 {
                     dgInvoice.Items.Add(dgItems[i]);
                 }
+             
+
 
             }
             else
