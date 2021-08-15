@@ -219,6 +219,16 @@ namespace GroupProjectCS3280.Main
                 selectedIndex = cmbItems.SelectedIndex;
                 clsItem item;
 
+                if (DatePicker.Text == "")
+                {
+                    MessageBox.Show("Please select a date.");
+                }
+                if (cmbItems.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select an item.");
+                }
+            
+
                 for (int i = 0; i < items.Count; i++)
                 {
                     if (selectedIndex == i)

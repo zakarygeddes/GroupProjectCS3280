@@ -12,7 +12,7 @@ namespace GroupProjectCS3280
     /// <summary>
     /// Class that defines the invoice
     /// </summary>
-    class clsInvoice
+    public class clsInvoice
     {
         /// <summary>
         /// Sets what the variables are

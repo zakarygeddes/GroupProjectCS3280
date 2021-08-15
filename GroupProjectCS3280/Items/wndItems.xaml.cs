@@ -123,6 +123,8 @@ namespace GroupProjectCS3280.Items
                     string code = NewItemCodeTxt.Text;
                     string desc = NewItemDescTxt.Text;
                     itemLogic.AddLogic(code, desc, cost);
+
+                    RefreshDataWindow();
                 }
                 else
                 {
@@ -157,9 +159,12 @@ namespace GroupProjectCS3280.Items
                     if (EditItemDescCheck.IsChecked == true && EditItemCostCheck.IsChecked == true) //edit both
                     {
                         if (check)
+                        {
                             itemLogic.EditAll(code, desc, cost);
-                        else 
-                        { 
+                            RefreshDataWindow();
+                        }
+                        else
+                        {
                             MessageBox.Show("Cost entered is not an integer.");
                             return;
                         }
@@ -167,11 +172,15 @@ namespace GroupProjectCS3280.Items
                     else if (EditItemDescCheck.IsChecked == true && EditItemCostCheck.IsChecked == false) //edit only description
                     {
                         itemLogic.EditDesc(code, desc); //error happens here
+                        RefreshDataWindow();
                     }
                     else if (EditItemDescCheck.IsChecked == false && EditItemCostCheck.IsChecked == true) //edit only cost
                     {
                         if (check)
+                        {
                             itemLogic.EditCost(code, cost);
+                            RefreshDataWindow();
+                        }
                         else
                         {
                             MessageBox.Show("Cost entered is not an integer.");
@@ -207,6 +216,13 @@ namespace GroupProjectCS3280.Items
             {
                 string code = ItemCodeCombo.SelectedItem.ToString();
                 itemLogic.DeleteLogic(code);
+
+                RefreshDataWindow();
+
+                ItemCodeCombo.Text = "";
+                List<String> items = itemLogic.GetItems();
+                ItemCodeCombo.ItemsSource = items;
+                ItemCodeCombo.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -240,7 +256,11 @@ namespace GroupProjectCS3280.Items
         {
             try
             {
-                SearchItemsDataGrid.Items.Refresh();
+                DataSet ds = new DataSet();
+                ds = itemLogic.InitializeDataGrid(); //fill up with data
+
+                SearchItemsDataGrid.IsReadOnly = true; //sets data grid to read only
+                SearchItemsDataGrid.ItemsSource = ds.Tables[0].AsDataView(); //populate data grid
             }
             catch (Exception ex)
             {

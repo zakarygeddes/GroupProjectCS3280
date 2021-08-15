@@ -113,7 +113,7 @@ namespace GroupProjectCS3280.Items
                     string sqlStatement = sql.InsertItem(itemCode, desc, cost);
                     var result = db.ExecuteScalarSQL(sqlStatement);
 
-                    items.RefreshDataWindow();
+                    //items.RefreshDataWindow(); Refresh DataWindow on interface not in logic class
                 }
             }
             catch (Exception ex)
@@ -137,7 +137,7 @@ namespace GroupProjectCS3280.Items
                 }
                 else
                 {
-                    db.ExecuteNonQuery($"DELETE FROM ItemDesc WHERE ItemCode = {itemCode}");
+                    db.ExecuteNonQuery($"DELETE FROM ItemDesc WHERE ItemCode = \u0022{itemCode}\u0022");
                 }
             }
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace GroupProjectCS3280.Items
                 string sqlStatement = sql.UpdateAllItems(code, desc, cost);
                 db.ExecuteNonQuery(sqlStatement);
 
-                items.RefreshDataWindow();
+                //items.RefreshDataWindow(); Refresh DataWindow on interface not in logic class
             }
             catch (Exception ex)
             {
@@ -180,7 +180,7 @@ namespace GroupProjectCS3280.Items
                 string sqlStatement = sql.UpdateDesc(code, desc);
                 db.ExecuteNonQuery(sqlStatement);
 
-                items.RefreshDataWindow();
+                //items.RefreshDataWindow(); Refresh DataWindow on interface not in logic class
             }
             catch (Exception ex)
             {
@@ -200,7 +200,7 @@ namespace GroupProjectCS3280.Items
                 string sqlStatement = sql.UpdateCost(code, cost);
                 db.ExecuteNonQuery(sqlStatement);
 
-                items.RefreshDataWindow();
+                //items.RefreshDataWindow(); Refresh DataWindow on interface not in logic class
             }
             catch (Exception ex)
             {
