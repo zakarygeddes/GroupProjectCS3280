@@ -185,5 +185,23 @@ namespace GroupProjectCS3280.Items
                 throw new Exception(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Returns the 
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public string DeleteItem(string code)
+        {
+            try {
+                string deleteItemSQL = $"DELETE FROM ItemDesc WHERE ItemCode = \u0022{code}\u0022";
+
+                return deleteItemSQL;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
