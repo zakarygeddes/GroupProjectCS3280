@@ -29,6 +29,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// used for UPDATE statement to edit invoices based on passed in invoice num
         /// </summary>
@@ -46,6 +47,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// used with DELETE statement to delete a record, based on passed in invoice num
         /// </summary>
@@ -62,6 +64,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// used to delete a line item out of LineItems table, this I would normally handle with a trigger
         /// in the SQL side, but for simplicity when an Invoice is deleted, this statement would run as well
@@ -79,6 +82,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// delete a line item from a specific invoice
         /// </summary>
@@ -98,6 +102,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// This is to add a new LineItem, when an Invoice is added, this will also run to update that table
         /// appropiately
@@ -117,6 +122,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// This is the INSERT statement method to put a brand new invoice in the system,
         /// again works with the add line item function
@@ -135,6 +141,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// Used once a new invoice is added, updates data grid with that invoice
         /// </summary>
@@ -151,6 +158,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// select a single lineitem from an invoice for manipulation
         /// </summary>
@@ -167,6 +175,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// get maxinvoice number
         /// </summary>
@@ -182,6 +191,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// get specific line items from a invoice using a join
         /// </summary>

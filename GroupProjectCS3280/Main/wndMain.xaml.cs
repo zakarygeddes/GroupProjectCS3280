@@ -141,6 +141,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// Button to handle new invoice generation
         /// allowing and disallowing certain button clicks 
@@ -168,6 +169,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// button to handle editting invoices
         /// </summary>
@@ -190,6 +192,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// button to handle deleting invoices
         /// </summary>
@@ -219,6 +222,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// button to submit new line to invoice
         /// </summary>
@@ -264,6 +268,7 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(MethodInfo.GetCurrentMethod().DeclaringType.Name + "." + MethodInfo.GetCurrentMethod().Name + " -> " + ex.Message);
             }
         }
+
         /// <summary>
         /// handles control menu clicks
         /// </summary>
@@ -271,54 +276,69 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if(ctrlEditItem.IsChecked==true)
+            try
             {
-                this.Hide();
-                wndItems Items = new wndItems();
-                Items.ShowDialog();
-                fillcmbItems();
-            }
-            if (ctrlSearch.IsChecked == true)
-            {
-                this.Hide();
-                wndSearch Search = new wndSearch();
-          
-                Search.ShowDialog();
-
-
-                string sSQL = "";
-                clsInvoice invoice = GlobalVariables.selectedInvoice;
-                sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
-                List<clsItem> dgItems = new List<clsItem>();
-                db = new clsDataAccess();
-                dgInvoice.Items.Clear();
-                dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
-                ObservableCollection<clsItem> collectionItems = new ObservableCollection<clsItem>(dgItems);
-                dgInvoice.ItemsSource = collectionItems;
-                /*
-                for (int i = 0; i < dgItems.Count; i++)
+                if (ctrlEditItem.IsChecked == true)
                 {
-                    dgInvoice.Items.Add(dgItems[i]);
+                    this.Hide();
+                    wndItems Items = new wndItems();
+                    Items.ShowDialog();
+                    fillcmbItems();
                 }
-                */
-                dgInvoice.Items.Refresh();
+                if (ctrlSearch.IsChecked == true)
+                {
+                    this.Hide();
+                    wndSearch Search = new wndSearch();
+
+                    Search.ShowDialog();
+
+
+                    string sSQL = "";
+                    clsInvoice invoice = GlobalVariables.selectedInvoice;
+                    sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
+                    List<clsItem> dgItems = new List<clsItem>();
+                    db = new clsDataAccess(); //how does it affect the data integrity if we refresh the database class every time? (This is legit me asking. Does it mess with the data that's been changed before?) -Wyn
+                    dgInvoice.Items.Clear();
+                    dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
+                    ObservableCollection<clsItem> collectionItems = new ObservableCollection<clsItem>(dgItems);
+                    dgInvoice.ItemsSource = collectionItems;
+                    /*
+                    for (int i = 0; i < dgItems.Count; i++)
+                    {
+                        dgInvoice.Items.Add(dgItems[i]);
+                    }
+                    */
+                    dgInvoice.Items.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
+
         /// <summary>
         /// method to fill combo items box
         /// </summary>
         private void fillcmbItems()
         {
-            items = new List<clsItem>();
-
-            items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
-
-            for(int i = 0; i<items.Count; i++)
+            try
             {
-                cmbItems.Items.Add(items[i].description);
-            }
+                items = new List<clsItem>();
 
+                items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    cmbItems.Items.Add(items[i].description);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
+
         /// <summary>
         /// button to deal with saving invoice after adding items
         /// </summary>
@@ -326,63 +346,70 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            
-            DateTime date = DatePicker.SelectedDate.Value;
-
-            if (!isEditing)
+            try
             {
-                string sSQL = clsMainSQL.addNewInvoice(date, totalCost);
-                clsMainLogic.addInvoice(db, sSQL);
+                DateTime date = DatePicker.SelectedDate.Value;
 
-                sSQL = clsMainSQL.getMaxInvoiceNum();
-                int invoiceNum = clsMainLogic.maxInvoiceNum(db, sSQL);
-                selectedInvoiceNum = invoiceNum;
-
-                txtInvoiceNum.Text = invoiceNum.ToString();
-
-                List<clsItem> items = new List<clsItem>();
-                for (int i = 0; i < dgInvoice.Items.Count; i++)
+                if (!isEditing)
                 {
-                    items.Add((clsItem)dgInvoice.Items.GetItemAt(i));
+                    string sSQL = clsMainSQL.addNewInvoice(date, totalCost);
+                    clsMainLogic.addInvoice(db, sSQL);
+
+                    sSQL = clsMainSQL.getMaxInvoiceNum();
+                    int invoiceNum = clsMainLogic.maxInvoiceNum(db, sSQL);
+                    selectedInvoiceNum = invoiceNum;
+
+                    txtInvoiceNum.Text = invoiceNum.ToString();
+
+                    List<clsItem> items = new List<clsItem>();
+                    for (int i = 0; i < dgInvoice.Items.Count; i++)
+                    {
+                        items.Add((clsItem)dgInvoice.Items.GetItemAt(i));
+                    }
+
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        sSQL = clsMainSQL.addNewLineItem(invoiceNum, (i + 1), items[i].code);
+                        clsMainLogic.addLineItem(db, sSQL);
+                    }
+
+
+
+
+                    clsInvoice invoice = new clsInvoice(invoiceNum.ToString(), date.ToString(), totalCost.ToString());
+                    GlobalVariables.selectedInvoice = invoice;
+
+                    sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
+                    List<clsItem> dgItems = new List<clsItem>();
+                    db = new clsDataAccess();
+                    dgInvoice.Items.Clear();
+                    dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
+
+                    for (int i = 0; i < dgItems.Count; i++)
+                    {
+                        dgInvoice.Items.Add(dgItems[i]);
+                    }
+
+
+
+                }
+                else
+                {
+                    //TODO handle editing logic and sql and populating datagrid?
                 }
 
-                for (int i = 0; i < items.Count; i++)
-                {
-                    sSQL = clsMainSQL.addNewLineItem(invoiceNum, (i + 1), items[i].code);
-                    clsMainLogic.addLineItem(db, sSQL);
-                }
 
-             
-              
-             
-                clsInvoice invoice = new clsInvoice(invoiceNum.ToString(), date.ToString(), totalCost.ToString());
-                GlobalVariables.selectedInvoice = invoice;
-
-                sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
-                List<clsItem> dgItems = new List<clsItem>();
-                db = new clsDataAccess();
-                dgInvoice.Items.Clear();
-                dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
-              
-                for (int i = 0; i < dgItems.Count; i++)
-                {
-                    dgInvoice.Items.Add(dgItems[i]);
-                }
-             
-
-
+                btnSave.IsEnabled = false;
+                btnEnter.IsEnabled = false;
+                btnEditInvoice.IsEnabled = true;
+                btnDeleteInvoice.IsEnabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                //TODO handle editing logic and sql and populating datagrid?
+                throw new Exception(ex.Message);
             }
-
-            
-            btnSave.IsEnabled = false;
-            btnEnter.IsEnabled = false;
-            btnEditInvoice.IsEnabled = true;
-            btnDeleteInvoice.IsEnabled = true;
         }
+
         /// <summary>
         /// method for handling selected datagrid item
         /// </summary>
@@ -390,10 +417,18 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void dgInvoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            clsItem item = (clsItem) dgInvoice.SelectedItem;
-            selectedCode = item.code;
-            index = dgInvoice.SelectedIndex+1;
+            try
+            {
+                clsItem item = (clsItem)dgInvoice.SelectedItem;
+                selectedCode = item.code;
+                index = dgInvoice.SelectedIndex + 1;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
+
         /// <summary>
         /// method for deleting line item off of an invoice
         /// </summary>
@@ -401,8 +436,15 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
         {
-            string sSQL = clsMainSQL.deleteLineItemsFromInvoice(selectedInvoiceNum, index, selectedCode);
-            clsMainLogic.deleteLineItems(db, sSQL);
+            try
+            {
+                string sSQL = clsMainSQL.deleteLineItemsFromInvoice(selectedInvoiceNum, index, selectedCode);
+                clsMainLogic.deleteLineItems(db, sSQL);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
