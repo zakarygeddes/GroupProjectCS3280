@@ -298,17 +298,17 @@ namespace GroupProjectCS3280.Main
                     sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
                     List<clsItem> dgItems = new List<clsItem>();
                     db = new clsDataAccess(); //how does it affect the data integrity if we refresh the database class every time? (This is legit me asking. Does it mess with the data that's been changed before?) -Wyn
-                    dgInvoice.Items.Clear();
-                    dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
-                    ObservableCollection<clsItem> collectionItems = new ObservableCollection<clsItem>(dgItems);
-                    dgInvoice.ItemsSource = collectionItems;
+                    dgInvoice.Items.Clear(); //clears the datagrid
+                    dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL); //then gets the new items...
+                    ObservableCollection<clsItem> collectionItems = new ObservableCollection<clsItem>(dgItems); //then sends it to the clsItem class and makes a list?
+                    dgInvoice.ItemsSource = collectionItems; //and now replaces the items' source in the datagrid with the items from the clsItem class list you just made
                     /*
                     for (int i = 0; i < dgItems.Count; i++)
                     {
                         dgInvoice.Items.Add(dgItems[i]);
                     }
                     */
-                    dgInvoice.Items.Refresh();
+                    dgInvoice.Items.Refresh(); //so this should display the clsItems class list item source
                 }
             }
             catch (Exception ex)
