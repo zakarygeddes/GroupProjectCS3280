@@ -80,6 +80,19 @@ namespace GroupProjectCS3280.Main
         /// </summary>
         clsMainSQL clsMainSQL;
         /// <summary>
+        /// Database access class
+        /// </summary>
+        clsDataAccess db;
+        /// <summary>
+        /// variable to hold main logic class
+        /// </summary>
+        clsMainLogic clsMainLogic;
+        /// <summary>
+        /// list of items
+        /// </summary>
+        List<clsItem> items;
+
+        /// <summary>
         /// Called when the Window initializes
         /// </summary>
         public wndMain()
@@ -87,6 +100,9 @@ namespace GroupProjectCS3280.Main
             try
             {
                 InitializeComponent();
+                clsMainSQL = new clsMainSQL();
+                clsMainLogic = new clsMainLogic();
+                db = new clsDataAccess();
                 Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
                 fillcmbItems();
                 gridInputs.IsEnabled = false;
@@ -108,10 +124,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                clsMainSQL clsMainSQL = new clsMainSQL();
-                clsMainLogic clsMainLogic = new clsMainLogic();
-                clsDataAccess db = new clsDataAccess();
-                List<clsItem> items = new List<clsItem>();
+                items = new List<clsItem>();
                 items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
                 selectedIndex = cmbItems.SelectedIndex;
 
@@ -188,10 +201,7 @@ namespace GroupProjectCS3280.Main
             {
                 //populate dg and labels with either new invoice or variable from search class
                 //handle deleting from db through logic and sql classes
-                clsMainSQL = new clsMainSQL();
-                clsMainLogic clsMainLogic = new clsMainLogic();
-                clsDataAccess db = new clsDataAccess();
-                List<clsItem> items = new List<clsItem>();
+                items = new List<clsItem>();
                 String sSQL= clsMainSQL.deleteLineItems(Int32.Parse(txtInvoiceNum.Text));
                 clsMainLogic.deleteLineItems(db, sSQL);
                 sSQL = clsMainSQL.deleteInvoices(Int32.Parse(txtInvoiceNum.Text));
@@ -220,13 +230,10 @@ namespace GroupProjectCS3280.Main
             //creating full sql statement strings
             try
             {
-                clsMainSQL = new clsMainSQL(); 
-                clsMainLogic clsMainLogic = new clsMainLogic();
-                clsDataAccess db = new clsDataAccess();
-                List<clsItem> items = new List<clsItem>();
+                items = new List<clsItem>();
                 items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
                 selectedIndex = cmbItems.SelectedIndex;
-                clsItem item;
+                clsItem item; //what does this line do?
 
                 if (DatePicker.Text == "")
                 {
@@ -280,10 +287,7 @@ namespace GroupProjectCS3280.Main
 
 
                 string sSQL = "";
-                clsDataAccess db = new clsDataAccess();
-                clsMainLogic clsMainLogic = new clsMainLogic();
                 clsInvoice invoice = GlobalVariables.selectedInvoice;
-                clsMainSQL = new clsMainSQL();
                 sSQL = clsMainSQL.getLineItemsFromInvoice(Int32.Parse(invoice.num));
                 List<clsItem> dgItems = new List<clsItem>();
                 db = new clsDataAccess();
@@ -305,10 +309,7 @@ namespace GroupProjectCS3280.Main
         /// </summary>
         private void fillcmbItems()
         {
-            clsMainSQL clsMainSQL = new clsMainSQL();
-            clsMainLogic clsMainLogic = new clsMainLogic();
-            clsDataAccess db = new clsDataAccess();
-            List<clsItem> items = new List<clsItem>();
+            items = new List<clsItem>();
 
             items = clsMainLogic.fillItemsBox(db, clsMainSQL.getAllItems());
 
@@ -325,9 +326,7 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            clsMainSQL clsMainSQL = new clsMainSQL();
-            clsMainLogic clsMainLogic = new clsMainLogic();
-            clsDataAccess db = new clsDataAccess();
+            
             DateTime date = DatePicker.SelectedDate.Value;
 
             if (!isEditing)
@@ -402,9 +401,6 @@ namespace GroupProjectCS3280.Main
         /// <param name="e"></param>
         private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
         {
-            clsMainSQL = new clsMainSQL();
-            clsMainLogic clsMainLogic = new clsMainLogic();
-            clsDataAccess db = new clsDataAccess();
             string sSQL = clsMainSQL.deleteLineItemsFromInvoice(selectedInvoiceNum, index, selectedCode);
             clsMainLogic.deleteLineItems(db, sSQL);
         }
