@@ -422,6 +422,7 @@ namespace GroupProjectCS3280.Main
                 clsItem item = (clsItem)dgInvoice.SelectedItem;
                 selectedCode = item.code;
                 index = dgInvoice.SelectedIndex + 1;
+                lblSelected.Content = "Item: " + item.description +" Line " + index;
             }
             catch (Exception ex)
             {
@@ -438,7 +439,7 @@ namespace GroupProjectCS3280.Main
         {
             try
             {
-                string sSQL = clsMainSQL.deleteLineItemsFromInvoice(selectedInvoiceNum, index, selectedCode);
+                string sSQL = clsMainSQL.deleteLineItemsFromInvoice(selectedInvoiceNum, index);
                 clsMainLogic.deleteLineItems(db, sSQL);
             }
             catch (Exception ex)
