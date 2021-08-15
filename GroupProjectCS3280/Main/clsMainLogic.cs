@@ -15,7 +15,12 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     class clsMainLogic
     {
-
+        /// <summary>
+        /// pulls from db to create a list of class items to fill combox box
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
+        /// <returns></returns>
         public List<clsItem> fillItemsBox(clsDataAccess db, string sSQL)
         {
             try
@@ -39,7 +44,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// adds an invoice to the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
         public void addInvoice(clsDataAccess db, string sSQL)
         {
             try
@@ -51,7 +60,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// deletes an invoice from the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
         public void deleteInvoice(clsDataAccess db, string sSQL)
         {
             try
@@ -63,7 +76,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// delete an item from the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
         public void deleteLineItems(clsDataAccess db, string sSQL)
         {
             try
@@ -75,7 +92,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// adds a line item to the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
         public void addLineItem(clsDataAccess db, string sSQL)
         {
             try
@@ -87,7 +108,12 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// logic for grabbing max invoice number from database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
+        /// <returns></returns>
         public int maxInvoiceNum(clsDataAccess db, string sSQL)
         {
             try
@@ -104,7 +130,12 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// logic for gettting line items from invoice
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="sSQL"></param>
+        /// <returns></returns>
         public List<clsItem> getLineItemsFromInvoice(clsDataAccess db, string sSQL)
         {
             try

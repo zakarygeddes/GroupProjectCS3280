@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using GroupProjectCS3280.Search;
 using GroupProjectCS3280.Items;
 using System.Reflection;
+using System.Collections.ObjectModel;
 
 /// <summary>
 /// Namespace for the project field
@@ -54,11 +55,25 @@ namespace GroupProjectCS3280.Main
         /// flag for editing invoice
         /// </summary>
         bool isEditing;
+        /// <summary>
+        /// varaible to store selected index of dg item
+        /// </summary>
         int selectedIndex;
+        /// <summary>
+        /// variable to store total cost
+        /// </summary>
         int totalCost;
-        int invoice;
+        /// <summary>
+        /// variable for invoice id
+        /// </summary>
         public int selectedInvoiceNum;
+        /// <summary>
+        /// variable for checking db index
+        /// </summary>
         public int index;
+        /// <summary>
+        /// variable to store line item code
+        /// </summary>
         public string selectedCode;
         /// <summary>
         /// variable to hold main SQL class
@@ -274,15 +289,20 @@ namespace GroupProjectCS3280.Main
                 db = new clsDataAccess();
                 dgInvoice.Items.Clear();
                 dgItems = clsMainLogic.getLineItemsFromInvoice(db, sSQL);
-
+                ObservableCollection<clsItem> collectionItems = new ObservableCollection<clsItem>(dgItems);
+                dgInvoice.ItemsSource = collectionItems;
+                /*
                 for (int i = 0; i < dgItems.Count; i++)
                 {
                     dgInvoice.Items.Add(dgItems[i]);
                 }
+                */
                 dgInvoice.Items.Refresh();
             }
         }
-
+        /// <summary>
+        /// method to fill combo items box
+        /// </summary>
         private void fillcmbItems()
         {
             clsMainSQL clsMainSQL = new clsMainSQL();
@@ -298,6 +318,11 @@ namespace GroupProjectCS3280.Main
             }
 
         }
+        /// <summary>
+        /// button to deal with saving invoice after adding items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             clsMainSQL clsMainSQL = new clsMainSQL();
@@ -359,14 +384,22 @@ namespace GroupProjectCS3280.Main
             btnEditInvoice.IsEnabled = true;
             btnDeleteInvoice.IsEnabled = true;
         }
-
+        /// <summary>
+        /// method for handling selected datagrid item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgInvoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             clsItem item = (clsItem) dgInvoice.SelectedItem;
             selectedCode = item.code;
             index = dgInvoice.SelectedIndex+1;
         }
-
+        /// <summary>
+        /// method for deleting line item off of an invoice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
         {
             clsMainSQL = new clsMainSQL();

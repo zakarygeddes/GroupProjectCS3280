@@ -14,6 +14,10 @@ namespace GroupProjectCS3280.Main
     /// </summary>
     class clsMainSQL
     {
+        /// <summary>
+        /// get all items from itemDesc
+        /// </summary>
+        /// <returns></returns>
         public string getAllItems()
         {
             try
@@ -75,7 +79,13 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// delete a line item from a specific invoice
+        /// </summary>
+        /// <param name="invoiceNum"></param>
+        /// <param name="linenum"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public string deleteLineItemsFromInvoice(int invoiceNum, int linenum, string code)
         {
             try
@@ -157,7 +167,10 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// get maxinvoice number
+        /// </summary>
+        /// <returns></returns>
         public string getMaxInvoiceNum()  
         {
             try
@@ -169,7 +182,11 @@ namespace GroupProjectCS3280.Main
                 throw new Exception(ex.Message);
             }
         }
-
+        /// <summary>
+        /// get specific line items from a invoice using a join
+        /// </summary>
+        /// <param name="invoicenum"></param>
+        /// <returns></returns>
         public string getLineItemsFromInvoice(int invoicenum)
         {
             try
