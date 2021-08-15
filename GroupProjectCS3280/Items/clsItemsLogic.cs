@@ -137,7 +137,7 @@ namespace GroupProjectCS3280.Items
                 }
                 else
                 {
-                    db.ExecuteNonQuery($"DELETE FROM ItemDesc WHERE ItemCode = \u0022{itemCode}\u0022");
+                    db.ExecuteNonQuery(sql.DeleteItem(itemCode));
                 }
             }
             catch (Exception ex)
