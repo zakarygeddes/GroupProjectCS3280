@@ -58,8 +58,8 @@ namespace GroupProjectCS3280.Main
         int totalCost;
         int invoice;
         public int selectedInvoiceNum;
-        int index;
-        string selectedCode;
+        public int index;
+        public string selectedCode;
         /// <summary>
         /// variable to hold main SQL class
         /// </summary>
@@ -75,6 +75,8 @@ namespace GroupProjectCS3280.Main
                 Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
                 fillcmbItems();
                 gridInputs.IsEnabled = false;
+                btnDeleteInvoice.IsEnabled = false;
+                btnEditInvoice.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -362,7 +364,7 @@ namespace GroupProjectCS3280.Main
         {
             clsItem item = (clsItem) dgInvoice.SelectedItem;
             selectedCode = item.code;
-            index = dgInvoice.SelectedIndex;
+            index = dgInvoice.SelectedIndex+1;
         }
 
         private void btnDeleteLine_Click(object sender, RoutedEventArgs e)
